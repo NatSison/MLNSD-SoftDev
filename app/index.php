@@ -28,12 +28,6 @@
           </li>
           <li>
             <a href="#">
-              <i class="bi bi-house"></i>
-              <span>Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
               <i class="bi bi-people"></i>
               <span>Applicants</span>
             </a>
@@ -115,155 +109,13 @@
 
       <div class="container-fluid px-4">
         <div class="row">
-          <div class="col-4">
+          <div class="col">
             <div class="activities">
               <p class="fs-5">Activities</p>
             </div>
           </div>
-          <div class="col-8">
-            <div class="card2">
-              <h2 class="fs-5">Reports</h2>
-              <div class="scrollable">
-                <table class="table table-hover table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Job Position</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">CV Link</th>
-                      <th scope="col">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <td>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-check-square"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <td class="text-right">
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-check-square"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <td class="text-right">
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-check-square"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <td class="text-right">
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-check-square"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">6</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <td class="text-right">
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-check-square"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">7</th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <th scope="col"></th>
-                      <td class="text-right">
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-primary" style="width: 80px">
-                          <i class="bi bi-check-square"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-
-      <!-- <div class="card2">
-          <div>
-            <p class="fs-5">Activities</p>
-          </div>
-        </div> -->
-
-      <!-- <div class="card--container">
-        <h3 class="main--title ">INTERN</h3>
-        <div class="card--wrapper">
-          <div class="applicants--card">
-            <div class="card--header">
-                <div class="total">
-                    <span class="title">Total Applicants</span>
-                    <span class="total--value">461</span>
-                </div>
-                <i class="bi bi-people-fill"></i>
-            </div>
-            <span class="card-detail">**** **** **** ****</span>
-          </div>
-        </div>
-        <div class="applicants--card">
-          <div class="card--header">
-              <div class="total">
-                  <span class="title">Total Applicants</span>
-                  <span class="total--value">461</span>
-              </div>
-              <i class="bi bi-people-fill"></i>
-          </div>
-          <span class="card-detail">**** **** **** ****</span>
-        </div> -->
     </div>
 
     <script>

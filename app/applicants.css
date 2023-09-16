@@ -102,27 +102,22 @@ body {
   align-items: center;
   gap: 1rem;
 }
-/* Styling the cards (New, Accepted, Declined & Pending Applicants*/
-.card1 {
-  color: #fff;
+.card1 i {
+  padding: 5px;
+}
+
+/* Scroll Bar */
+.scrollable {
   background: #293241;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-/* Adjust the logo position and style */
-.card1 i {
-  padding: 5px;
+
+/* Table */
+table {
+  border-collapse: collapse;
+  flex-direction: column;
+  align-items: center;
 }
-.activities {
-  color: #fff;
-  background: #293241;
-  display: flex;
-  height: 80vh;
-  width: 100%;
-  justify-content: center;
-  margin-top: 50px;
-  padding: 5px;
-}
+
