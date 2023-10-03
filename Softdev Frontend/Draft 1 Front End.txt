@@ -1,0 +1,128 @@
+CSS
+/*======NAVIGATION & SIDEBAR======*/
+/*==COLORS==*/
+/* :root {
+  
+  --body-color: #e4e9f7;
+  --sidebar-color: maroon;
+  --primary-color: gold;
+}
+
+body {
+  height: 100vh;
+  background: var(--body-color);
+}
+.sidebar {
+  color: #fff;
+  font-weight: bolder;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80px;
+  padding: 10px 14px;
+  background: var(--sidebar-color);
+}
+
+.sidebar ul li {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  list-style-type: none;
+  line-height: 50px;
+}
+.sidebar ul li a:hover {
+  background-color: #fff;
+  color: black;
+  width: 100%;
+  height: 100%;
+  line-height: 50px;
+  border-radius: 10px;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+}
+
+.sidebar ul li a i {
+  min-width: 40px;
+  font-size: 2opx;
+}
+.navbar button {
+  border-color: white;
+  background: var(--body-color);
+}
+.content {
+  padding-left: 1rem;
+  margin-top: 1rem;
+  margin-left: 250px;
+}
+.content h1 {
+  font-weight: bolder;
+  font-style: normal;
+  font-size: larger;
+  font-family: Arial, Helvetica, sans-serif;
+}   */
+
+
+HTML
+<!-- <div class="sidebar">
+      <div class="logo_content">
+        <div class="logo">
+          <div class="name">IAMS MANAGEMENT SYSTEM</div>
+        </div>
+      </div>
+        <ul class="navlist">
+          <li>
+            <a href="#">
+              <i class="bi bi-grid-fill"></i>
+              <span class="link1">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-house-door"></i>
+              <span class="link1">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-archive"></i>
+              <span class="link1">Archive</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-bookmark"></i>
+              <span class="link1">About Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-person-lines-fill"></i>
+              <span class="link1">Contact Us</span>
+            </a>
+          </li>
+  
+        </ul>
+      </div>
+
+     <nav class="navbar" style="background-color: maroon;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: white;">IAMS MANAGEMENT SYSTEM</a>
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn" type="submit"> <i class="bi bi-search"></i></button>
+          </form>
+        </div>
+      </div>
+    </nav>
+         <aside>
+            <div class="content mt-2 ps-3">
+               <h1>DASHBOARD</h1>
+            </div>
+          </aside>  -->

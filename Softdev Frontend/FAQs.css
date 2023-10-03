@@ -1,0 +1,90 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.header {
+  max-width: 75%;
+  margin: auto;
+}
+.wrapper > p,
+.header > h1 {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.header > h1 {
+  letter-spacing: 3px;
+}
+.icon {
+  display: flex;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  border: none;
+  overflow: none;
+  transition: 0.4s;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.icon i {
+  font-size: 1.6rem;
+}
+.active,
+.icon:hover {
+  background-color: beige;
+}
+.text {
+  padding: 0 2rem 2.5rem 2rem;
+  background-color: white;
+  overflow: hidden;
+  background-color: #f1f7f5;
+  display: none;
+  
+}
+
+.text p {
+  color: rgb(0, 0, 0, 0.7);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  
+}
+.faqs {
+  border: 1px solid rgb(0, 0, 0, 0.2);
+  margin: 10px 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+.faqs.active {
+  border: none;
+  margin: 10px 0;
+
+}
+/* Footer Design */
+a {
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.fa-envelope,
+.fa-phone,
+.fa-facebook,
+.bi-messenger {
+    padding: 8px;
+    font-size: 30px;
+}
+
+.footer{
+    background-color: navy;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
