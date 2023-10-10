@@ -9,7 +9,7 @@
     define('APPROOT', dirname(__DIR__));
 
     // URL Root
-	define('URLROOT','http://localhost/apc_2022_2023_T3_PROJMAN_MI201_MI203_G03_Team_MLNSD');
+	define('URLROOT','http://localhost/MLNSD-SoftDev');
 	
 	// REFERER Page
 	$my_referer = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : (isset($_POST['referer']) ? trim($_POST['referer']) : false));
