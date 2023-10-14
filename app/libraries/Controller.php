@@ -22,7 +22,7 @@ class Controller {
             require_once '../app/views/' . $view;
         }else{
             // View does not exist
-            //die($view);
+            die('View does not exist');
         }
     }
 }
