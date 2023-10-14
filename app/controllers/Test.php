@@ -2,11 +2,11 @@
 	class Test extends Controller{
 		
 		public function index(){
-			$title = [
-				"text" => "Hello World",
+			$data = [ //change accordingly
+				"title" => "Hello World", 
 			];
 			
-			$this->view("test/index", $title);
+			$this->view("test/index.php", $data);
 			
 		}
 	}

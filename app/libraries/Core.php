@@ -14,9 +14,9 @@ class Core {
         $url = $this->getUrl();
 
         // redirect to homepage of admin
-        if(isset($url[0]) && $url[0] == 'admin' && !isset($url[1])){
-            $url[1] = 'dashboard'; // To be changed once Dashboard page is created
-        }
+        //if(isset($url[0]) && $url[0] == 'admin' && !isset($url[1])){
+        //    $url[1] = 'dashboard'; // To be changed once Dashboard page is created
+        //}
 
         // unset if first value is admin and a class in the URL is set
         if(isset($url[0]) && $url[0] == 'admin' && isset($url[1])){

@@ -41,5 +41,9 @@
 </header>
 
 <?php require APPROOT . '/views/templates/adminNavbar.php'; ?>
-<div class="container">
+<?php 
+    if ($view != 'test/index.php'){
+        ?><div class="container"><?php
+    }
+?>
 <?php flash('message'); ?>
