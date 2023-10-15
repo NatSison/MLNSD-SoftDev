@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {}
+
+.section img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.fa-envelope,
+.fa-phone,
+.fa-facebook,
+.bi-messenger {
+    padding: 8px;
+    font-size: 30px;
+}
+
+.section {
+    background-color:white;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    width: 98%;
+    margin: 10px auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.section img {
+    display: flex;
+    max-height: 20rem;
+}
+
+.section2 {
+    background-color: navy;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}

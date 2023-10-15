@@ -1,29 +1,45 @@
+// Function to toggle between login and registration forms
 function toggleForm(formType) {
-    const loginForm = document.querySelector('.form.login');
-    const signupForm = document.querySelector('.form.signup');
+    const loginForm = document.querySelector('.login-container');
+    const registrationForm = document.querySelectorAll('.login-container')[1];
 
-    if (formType === 'login') {
-        loginForm.classList.add('active');
-        signupForm.classList.remove('active');
-    } else if (formType === 'signup') {
-        loginForm.classList.remove('active');
-        signupForm.classList.add('active');
+    if (formType === 'signup') {
+        loginForm.style.display = 'none';
+        registrationForm.style.display = 'block';
+    } else {
+        loginForm.style.display = 'block';
+        registrationForm.style.display = 'none';
     }
 }
 
+// Function to validate the login form
 function login() {
-    const username = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
+    const loginUsername = document.getElementById('loginUsername').value;
+    const loginPassword = document.getElementById('loginPassword').value;
+
+    if (!loginUsername || !loginPassword) {
+        alert('Please fill in all the required fields.');
+        return false; // Prevent form submission
+    }
 
     // Add your login logic here
-    console.log(`Login with Username: ${username}, Password: ${password}`);
+
+    // If login is successful, you can redirect the user to another page
+    return true; // Allow form submission
 }
 
+// Function to validate the registration form
 function register() {
-    const name = document.getElementById('signupName').value;
-    const number = document.getElementById('signupNumber').value;
-    const password = document.getElementById('signupPassword').value;
+    const registrationUsername = document.getElementById('registrationUsername').value;
+    const registrationPassword = document.getElementById('registrationPassword').value;
+
+    if (!registrationUsername || !registrationPassword) {
+        alert('Please fill in all the required fields.');
+        return false; // Prevent form submission
+    }
 
     // Add your registration logic here
-    console.log(`Register with Name: ${name}, Email: ${number}, Password: ${password}`);
+
+    // If registration is successful, you can redirect the user to another page
+    return true; // Allow form submission
 }

@@ -9,48 +9,75 @@
   />
     <link rel="stylesheet" href="signup.css" />
     <title>Login and Registration</title>
-
+<style>
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-container">
-            <img src="Logo.png" alt="" class="logo-image">
+    <div class="login-container">
+        <div class="logo">
+          <img src="Logo.png" alt="" class="logo-image">
+          <h2>Login</h2>
+        </div>
+        <form onsubmit="return login()">
+          <div class="input-field">
+            <label for="loginUsername"></label>
+            <input type="text" id="loginUsername" placeholder="Username" name="loginUsername" required>
+            <i class="bi bi-person"></i>
           </div>
-        <div class="form login active">
-            <h2>Login</h2>
-                <div class="input-field">
-                    <input type="text" placeholder="Email" id="loginEmail" required>
-                    <i class="bi bi-envelope"></i>
-                </div>
-                <div class="input-field">
-                     <input type="password" placeholder="Password" id="loginPassword"required>
-                     <i class="bi bi-file-lock icon"></i>
-                </div>
-            <button onclick="login()">Login</button>
-            <div class="signup" style="font-size: 12px;">
-                <span class="text">Don't have an account? <p class="btn-toggle" onclick="toggleForm('signup')">Register here</p></span>
-            </div>
+          <div class="input-field">
+            <label for="loginPassword"></label>
+            <input type="password" id="loginPassword" placeholder="Password" name="loginPassword" required>
+            <i class="bi bi-file-lock"></i>
+          </div>
+          <button type="submit">Login</button>
+          <div class="signup" style="font-size: 12px; margin-top: 10px;">
+            <span class="text">Don't have an account? <p class="btn-toggle" onclick="toggleForm('signup')">Register here</p></span>
+          </div>
+        </form>
+      </div>
+  
+      <div class="login-container" style="display: none;">
+        <div class="logo">
+          <img src="Logo.png" alt="" class="logo-image">
+          <h2>Registration</h2>
         </div>
-        <div class="form signup">
-            <h2>Registration</h2>
-                <div class="input-field">
-                     <input type="text" placeholder="Full name" id="signupName"required>
-                         <i class="bi bi-person"></i>
-                 </div>
-                 <div class="input-field">
-                      <input type="text" placeholder="Contact Number" id="signupNumber"required>
-                        <i class="bi bi-telephone"></i>
-                 </div>
-                 <div class="input-field">
-                        <input type="password" placeholder="Password" id="signupPassword"required>
-                        <i class="bi bi-file-lock icon"></i>
-                 </div>
-            <button onclick="register()">Register</button>
-            <div class="signup" style="font-size: 12px;">
-                <span class="text">Already have an account? <p class="btn-toggle" onclick="toggleForm('login')">Login here</p> </span>
-                </div>
-        </div>
-    </div>
+        <form onsubmit="return register()">
+          <div class="input-field">
+            <label for="registrationUsername"></label>
+            <input type="text" id="registrationUsername" placeholder="Username" name="registrationUsername" required>
+            <i class="bi bi-person"></i>
+          </div>
+          <div class="input-field">
+            <label for="registrationName"></label>
+            <input type="password" id="registrationName" placeholder="Full Name" name="registrationName" required>
+            <i class="bi bi-person-lines-fill"></i>
+          </div>
+          <div class="input-field">
+            <label for="registrationNumber"></label>
+            <input type="password" id="registrationNumber" placeholder="Phone Number" name="registrationNumber" required>
+            <i class="bi bi-telephone"></i>
+          </div>
+          <div class="input-field">
+            <label for="registrationAddress"></label>
+            <input type="text" id="registrationAddress" placeholder="Complete Address" name="registrationAddress" required>
+            <i class="bi bi-geo-alt"></i>
+          </div>
+          <div class="input-field">
+            <label for="registrationEmail"></label>
+            <input type="text" id="registrationEmail" placeholder="Email" name="registrationEmail" required>
+            <i class="bi bi-envelope"></i>
+          </div>
+          <div class="input-field">
+            <label for="registrationPassword"></label>
+            <input type="text" id="registrationPassword" placeholder="Password" name="registrationPassword" required>
+            <i class="bi bi-file-lock"></i>
+          </div>
+          <button type="submit">Register</button>
+          <div class="signup" style="font-size: 12px; margin-top: 10px;">
+            <span class="text">Already have an account? <p class="btn-toggle" onclick="toggleForm('login')">Login here</p></span>
+          </div>
+        </form>
+      </div>
 
     <script src="signup.js"></script>
 </body>

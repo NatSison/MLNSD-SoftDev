@@ -1,15 +1,23 @@
-body {
+ /* Reset some default styles */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Apply a background color and center the content */
+  body {
     font-family: 'Times New Roman', Times, serif;
-    background-color: navy;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+  }
 
-.container {
+  /* Style the container */
+  .login-container {
     width: 100%;
     max-width: 300px;
     background-color: white;
@@ -19,9 +27,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     overflow: hidden;
-}
-
-.form {
+  }
+  .form {
     display: none;
 }
 
@@ -35,36 +42,38 @@ body {
     text-decoration: underline;
     color: #007bff;
 }
-/* LOGO */
-.logo {
+  /* Logo */
+  .logo {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
     margin-top: -20px;
-     color: #293241;
+    color: #293241;
   }
-  .logo i{
+  .logo i {
     font-size: 50px;
-   
   }
-  .logo h2{
+  .logo h2 {
     margin-left: 5px;
     font-size: 30px;
   }
   .logo-image {
     height: auto;
-    width: 100px; 
+    width: 100px;
     justify-content: center;
   }
-  .logo h2{
-  font-size: 30px;
+  .logo h2 {
+    margin-top: 5px;
+    font-size: 30px;
   }
-/* STYLING THE INPUT FIELD */
-.input-field {
+
+  /* STYLING THE INPUT FIELD */
+  .input-field {
     position: relative;
     margin-bottom: 20px;
-}
-.input-field input {
+  }
+
+  .input-field input {
     width: 100%;
     height: 40px;
     font-size: 15px;
@@ -75,11 +84,11 @@ body {
     border-bottom: 3px solid #ccc;
     border-top: 5px solid transparent;
     transition: all 0.5s ease;
-}
-.input-field input:is(:focus, :valid){
+  }
+  .input-field input:is(:focus, :valid) {
     border-bottom-color: navy;
-}
-.input-field i {
+  }
+  .input-field i {
     color: #999;
     font-size: 20px;
     top:50%;
@@ -88,10 +97,10 @@ body {
     position: absolute;
     transform: translateY(-50%);
     transition: all 0.2s ease;
-}
-.input-field input:is(:focus, :valid)~ i{
+  }
+  .input-field input:is(:focus, :valid) ~ i {
     color: navy;
-}
+  }
 
   /* STYLING THE BUTTON (LOGIN) */
   button {
@@ -104,8 +113,11 @@ body {
     color: #fff;
     letter-spacing: 1px;
     cursor: pointer;
-}
-.signup{
+  }
+  button:hover {
+    background-color: #00548b;
+  }
+  .signup{
     margin-top: 30px;
     text-align: center;
 }
