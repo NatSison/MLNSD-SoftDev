@@ -1,0 +1,19 @@
+:root {
+  --background-color: antiquewhi;
+  --sidebar-color: #293241;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+
+
+
