@@ -6,7 +6,7 @@
 				"title" => "Hello World", 
 			];
 			
-			$this->view("test/index.php", $data);
+			$this->view("test/index", $data);
 			
 		}
 	}
