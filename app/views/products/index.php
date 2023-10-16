@@ -39,7 +39,7 @@
                 <div class="col px-5">
                     <div class="card h-100">
                         <div class="m-auto h-100">
-                            <img src="<?php echo URLROOT."/img/products/".($product->varImg == DEFAULTIMAGE ? $product->productImg : $product->varImg); ?>" class=" img-thumbnail card-img-top rounded h-100" alt="<?php echo URLROOT."/img/products/".($product->varImg == DEFAULTIMAGE ? $product->productImg : $product->varImg); ?>" style="max-height: 300px">
+                            <img src="<?php echo URLROOT.'/img/products/'.($product->varImg == DEFAULTIMAGE ? $product->productImg : $product->varImg); ?>" class=" img-thumbnail card-img-top rounded h-100" alt="<?php echo URLROOT."/img/products/".($product->varImg == DEFAULTIMAGE ? $product->productImg : $product->varImg); ?>" style="max-height: 300px">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $product->product_name; ?></h5>

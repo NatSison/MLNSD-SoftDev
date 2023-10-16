@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,7 +23,7 @@
   <body>
     <div class="login-container">
       <div class="logo">
-        <img src="Logo.png" alt="" class="logo-image">
+        <img src="<?php echo URLROOT.'/img/Logo.png'?>" alt="" class="logo-image">
         <h2>Login</h2>
       </div>
       <form onsubmit="return login()">
