@@ -11,7 +11,7 @@
 		public function login(){
 			if(isset($_SESSION["admin_info"])) {
 				if($_SESSION["admin_login"]){
-					redirect("products");
+					redirect("admin/products");
 				}
 			}
 			if($_SERVER["REQUEST_METHOD"] == "POST"){
