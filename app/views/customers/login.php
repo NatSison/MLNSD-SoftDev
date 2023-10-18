@@ -22,7 +22,9 @@
   <body>
     <div class="login-container">
       <div class="logo">
-        <img src="<?php echo URLROOT . '/img/Logo.png'?>" alt="" class="logo-image">
+        <a href="<?php echo URLROOT?>">
+          <img src="<?php echo URLROOT . '/img/Logo.png'?>" alt="" class="logo-image">
+        </a>
         <h2>Login</h2>
       </div>
       <form method="post" action="#">
