@@ -1,4 +1,5 @@
 <?php require APPROOT . "/views/templates/adminHeader.php"; ?>
+    <?php echo $_SESSION["admin_login"] ?>
     <div class="row row-cols-md-2 row-cols-1">
         <div class="col container-fluid m-auto">
             <a href="<?php echo URLROOT; ?>/admin/products/add" class="btn btn-primary float-end w-100">

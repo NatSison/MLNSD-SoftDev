@@ -43,11 +43,11 @@
 						flash("message", "Incorrect password! Please try again", "alert alert-danger");
 						redirectCurrent();
 					} elseif (password_verify($data["password"], $login_result->password)) {
-						flash("message", "You are now logged in!");
 						$_SESSION["admin_login"] = "1";
 						$_SESSION["admin_info"] = $this->adminModel->getAdminById($login_result->adminId);
-						
-						redirect("admin/dashboard");
+						flash("message", "You are now logged in!");
+
+						redirect("admin/products");
 					} else {
 						flash("message", "Something went wrong! Please see support!", "alert alert-danger");
 						redirectCurrent();
@@ -66,7 +66,7 @@
 		}
 		
 		public function logout(){
-			redirect("admin/login/index");
+			redirect("index");
 			session_destroy();
 			session_start();
 			exit;
