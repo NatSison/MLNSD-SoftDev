@@ -61,7 +61,9 @@
                 </div>
               </div>
               <div class="action-buttons">
-                <a href="<?php echo URLROOT."/products/show/".$product->productId ?>" class="btn btn-primary stretched-link">See Details</a>
+                <form action="<?php echo URLROOT."/products/show/".$product->productId;?>">
+                  <button class="btn btn-primary view-details-button" data-toggle="modal" data-target="#myModal">View Details</button>
+                </form>
                 <button class="btn btn-success" data-toggle="modal" data-target="#myModal">
                   <i class="bi bi-cart-plus"></i>
                 </button>
