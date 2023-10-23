@@ -14,6 +14,7 @@
                         <th scope="col">Total Amount</th>
                         <th scope="col">Status</th>
                         <th scope="col">Method</th>
+                        <th scope="col">For Product Installation?</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -26,6 +27,7 @@
                             <td><?php echo $details->amount; ?></td>
                             <td><?php echo $details->status; ?></td>
                             <td><?php echo $details->method; ?></td>
+                            <td><?php echo $details->forProductInstallation;?></td>
                             <td>
                                 <form class="mx-1" action="<?php echo URLROOT."/admin/dashboard/markAsPaid/".$details->transactionId ?>" method="post" style="display: inline">
                                     <input type="submit" value="Mark as Paid" class="btn btn-success">
@@ -58,6 +60,7 @@
                         <th scope="col">Shipping Address</th>
                         <th scope="col">Status</th>
                         <th scope="col">Method</th>
+                        <th scope="col">For Product Installation?</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -70,6 +73,7 @@
                         <td><?php echo $details->shippingAddress; ?></td>
                         <td><?php echo $details->status; ?></td>
                         <td><?php echo $details->method; ?></td>
+                        <td><?php echo $details->forProductInstallation;?></td>
                         <td>
                             <form class="mx-1" action="<?php echo URLROOT."/admin/dashboard/completeOrder/".$details->transactionId ?>" method="post" style="display: inline">
                                 <input type="submit" value="Mark as Complete" class="btn btn-success">

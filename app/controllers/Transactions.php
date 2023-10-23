@@ -92,7 +92,8 @@
 					"shippingMethod" => $_POST["shippingMethod"],
 					"paymentMethod" => $_POST["paymentMethod"],
 					"amount" => $totalPrice,
-					"transactionId" => $transaction->id
+					"transactionId" => $transaction->id,
+					"productInstallation" => $_POST["productInstallation"]
 				];
 				
 				//validation

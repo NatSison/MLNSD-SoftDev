@@ -53,7 +53,7 @@
         
         <div class="card card-body mb-3">
 			<h4 class="card-title">Check your shipping details:</h4>
-            <form action="<?php echo URLROOT."/test" ?>" method="post" style="display: inline">
+            <form action="<?php echo URLROOT."/transactions/checkout" ?>" method="post" style="display: inline">
                 <label for="shippingAddress">Shipping Address: <sup>*</sup></label><br/>
                 <span class="text-muted">Note: Feel free to change the shipping address to your preferred one.</span>
                 <input type="text" name="shippingAddress" class="form-control form-control-lg <?php echo (isset($data["error"]["shippingAddress_err"])) ? "is-invalid" : ""; ?>" value="<?php echo $data["shippingAddress"]; ?>" required>
@@ -73,6 +73,9 @@
 					<option value="GCash">GCash</option>
 					<option value="Maya">Maya</option>
                 </select>
+
+				<label for="productInstallation">Avail for Product Installation: <sup>*</sup></label>
+                <input type="checkbox" name="productInstallation" value="Yes">
                 <p class="text-muted">Note: If selecting GCash, please wait for the store to contact you.</p>
                 
                 <br/>

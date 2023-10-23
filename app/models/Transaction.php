@@ -91,7 +91,7 @@
 		
 		public function getPendingTransactionForPayment(){
 			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, t.amount, p.method
+				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, t.amount, p.method, t.forProductInstallation
 				FROM transactions t
 				LEFT JOIN customers c ON c.id = t.customerId
 				LEFT JOIN payments p ON p.transactionId = t.id
@@ -104,7 +104,7 @@
 		
 		public function getPendingTransactionForShipping(){
 			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress
+				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress, t.forProductInstallation
 				FROM transactions t
 				LEFT JOIN customers c ON c.id = t.customerId
 				LEFT JOIN delivery d ON d.transactionId = t.id
@@ -350,17 +350,18 @@
 		}
 		
 		public function checkoutTransactions($data){
-			$this->db->query("UPDATE transactions SET status = 'FOR PAYMENT', amount = :amount, updatedOn = now(), updatedBy = :updatedBy WHERE id = :transactionId");
+			$this->db->query("UPDATE transactions SET status = 'FOR PAYMENT', amount = :amount, updatedOn = now(), updatedBy = :updatedBy, forProductInstallation = :productInstallation WHERE id = :transactionId");
 			
 			// if updatedBy is not specified
 			if(!isset($data["updatedBy"])){
 				$data["updatedBy"] = "System";
 			}
-			
+			echo $data["productInstallation"];
 			// Bind Values
 			$this->db->bind(":amount", $data["amount"]);
 			$this->db->bind(":updatedBy", $data["updatedBy"]);
 			$this->db->bind(":transactionId", $data["transactionId"]);
+			$this->db->bind(":productInstallation", $data["productInstallation"]);
 			
 			// Execute
 			if($this->db->execute()){
