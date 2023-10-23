@@ -8,30 +8,69 @@
 		
 		/***************** To Create New Transaction *****************/
 		public function createTransaction(){
-			$this->db->query("INSERT INTO transactions (customerId, status, active, createdOn, createdBy) VALUE (:customerId, 'PENDING', '1', now(), 'System')");
-			
-			/****STATUS is only "PENDING", "FOR PAYMENT", "FOR SHIPPING", "COMPLETED", "CANCELLED" ************/
-			/*** CREATE NEW TRANSACTION WHEN THERE IS NO ACTIVE TRANSACTION ***/
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
+			if(!isset($_SESSION["user_info"]) OR !$_SESSION["login"]) {
+				if(!isset($_SESSION["admin_info"]) OR !$_SESSION["admin_login"]){
+					flash("message", "Please login in order to use that feature!", "alert alert-danger");
+					redirectCurrent();
+				}else{
+					//$newTransaction = $this->db->query("INSERT INTO transactions (customerId, status, active, createdOn, createdBy) VALUE (:customerId, 'PENDING', '1', now(), 'System')");
+				
+					/****STATUS is only "PENDING", "FOR PAYMENT", "FOR SHIPPING", "COMPLETED", "CANCELLED" ************/
+					/*** CREATE NEW TRANSACTION WHEN THERE IS NO ACTIVE TRANSACTION ***/
+					
+					// Bind Values
+					//$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+
+					// Execute
+					//if($newTransaction){
+					//	return true;
+					//} else {
+					//	return false;
+					//}
+				}
+			}else{
+				$this->db->query("INSERT INTO transactions (customerId, status, active, createdOn, createdBy) VALUE (:customerId, 'PENDING', '1', now(), 'System')");
+				
+				/****STATUS is only "PENDING", "FOR PAYMENT", "FOR SHIPPING", "COMPLETED", "CANCELLED" ************/
+				/*** CREATE NEW TRANSACTION WHEN THERE IS NO ACTIVE TRANSACTION ***/
+				
+				// Bind Values
+				$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+
+				// Execute
+				if($this-> db->execute()){
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 		
 		/*************** To check if there is no active Transaction *************/
 		public function transactionChecker(){
-			$this->db->query("SELECT 1 FROM transactions WHERE customerId = :customerId AND active = 1");
+			if(!isset($_SESSION["user_info"]) OR !$_SESSION["login"]) {
+				if(!isset($_SESSION["admin_info"]) OR !$_SESSION["admin_login"]){
+					flash("message", "Please login in order to use that feature!", "alert alert-danger");
+					redirectCurrent();
+				}else{
+					$row = $this->db->query("SELECT 1 FROM transactions WHERE customerId = :customerId AND active = 1");
 			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+					// Bind Values
+					//$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+
+					
+				}
+				
+			}else{
+				$this->db->query("SELECT 1 FROM transactions WHERE customerId = :customerId AND active = 1");
 			
-			$row = $this->db->single();
+				// Bind Values
+				$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+				$row = $this->db->single();
+			}
+			
+
+			
 			return $row;
 		}
 		
@@ -117,7 +156,7 @@
 		
 		public function getAllPricesPending(){
 			$this->db->query(
-				"SELECT SUM(var.price) as total
+				"SELECT SUM(var.price * op.quantity) as total
        				FROM order_products op
 					LEFT JOIN transactions t ON t.id = op.transactionId
 					LEFT JOIN product_var var ON op.product_varId = var.id

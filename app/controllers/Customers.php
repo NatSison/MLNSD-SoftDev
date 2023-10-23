@@ -31,7 +31,12 @@
 			}
 		}
 		public function login(){
-			if(isset($_SESSION["user_info"])) {
+			if(isset($_SESSION["admin_info"])){
+				if(isset($_SESSION["admin_login"])){
+					flash("message", "Admin in Session", "alert alert-danger");
+					redirect("admin/products");
+				}
+			}else if(isset($_SESSION["user_info"])) {
 				if($_SESSION["login"]){
 					redirect("index");
 				}

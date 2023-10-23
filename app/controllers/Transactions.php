@@ -2,9 +2,19 @@
 	class Transactions extends Controller{
 		public function __construct() {
 			if(!isset($_SESSION["user_info"]) OR !$_SESSION["login"]) {
-				flash("message", "Please login in order to use that feature!", "alert alert-danger");
-				redirectCurrent();
-			} else {
+				if(!isset($_SESSION["admin_info"]) OR !$_SESSION["admin_login"]){
+					flash("message", "Please login in order to use that feature!", "alert alert-danger");
+					redirectCurrent();
+				}else{
+					$this->customerModel = $this->model("Customer");
+					$this->productModel = $this->model("Product");
+					$this->transactionModel = $this->model("Transaction");
+					
+					if(!$this->transactionModel->transactionChecker()){
+						$this->transactionModel->createTransaction();
+					}
+				}
+			}else{
 				$this->customerModel = $this->model("Customer");
 				$this->productModel = $this->model("Product");
 				$this->transactionModel = $this->model("Transaction");

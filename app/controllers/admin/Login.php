@@ -9,33 +9,38 @@
 		}
 		
 		public function login(){
-			if(isset($_SESSION["admin_info"])) {
+			if(isset($_SESSION["user_info"])) {
+				if($_SESSION["login"]){
+					flash("message", "Customer in Session", "alert alert-danger");
+					redirectCurrent();
+				}
+			}else if(isset($_SESSION["admin_info"])) {
 				if($_SESSION["admin_login"]){
 					redirect("admin/products");
 				}
 			}
-			if($_SERVER["REQUEST_METHOD"] == "POST"){
+			if(isset($_SESSION["user_info"])) {
+				if($_SESSION["login"]){
+					flash("message", "Customer in Session", "alert alert-danger");
+					redirect("index");
+				}
+			}else if($_SERVER["REQUEST_METHOD"] == "POST"){
 				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-				
 				$data = [
 					"username" => trim($_POST["username"]),
 					"password" => trim($_POST["password"]),
 					"error" => []
 				];
-				
 				// Validation
 				if (empty($data["username"])) {
 					$data["error"]["username_err"] = "Please enter username!";
 				}
-				
 				if (empty($data["password"])) {
 					$data["error"]["password_err"] = "Please enter password!";
 				}
-				
 				if(empty($data["error"])){
 					// Check login
 					$login_result = $this->adminModel->usernameChecker($data["username"]);
-					
 					if(empty($login_result)) {
 						flash("message", "Cannot find username! Please check.", "alert alert-danger");
 						redirectCurrent();
@@ -46,7 +51,6 @@
 						$_SESSION["admin_login"] = "1";
 						$_SESSION["admin_info"] = $this->adminModel->getAdminById($login_result->adminId);
 						flash("message", "You are now logged in!");
-
 						redirect("admin/products");
 					} else {
 						flash("message", "Something went wrong! Please see support!", "alert alert-danger");
@@ -56,14 +60,14 @@
 					//Load view with errors
 					$this->view("admin/login", $data);
 				}
-			} else {
+			}else {
 				$data = [
 					"username" => "",
 					"password" => ""
 				];
 				$this->view("admin/login", $data);
 			}
-		}
+		}	
 		
 		public function logout(){
 			redirect("index");
