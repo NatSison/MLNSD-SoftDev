@@ -4,42 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added missing width=device-width -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="ddashboard.css">
+    <link rel="stylesheet" href="reports.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>DASHBOARD MAIN</title>
+    <title><?php echo $data["title"]; ?></title>
     
-    <link
-    rel="stylesheet"
+    <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
-    <style>
- 
-
-    </style>
-   
-</head>
-<body>
-    
-<!-- SIDEBAR -->
-<div class="sidebar" id="mySidebar">
-    <p class="logo"><span>V</span>WIWS</p>
-    <a href="javascript:void(0);" class="a-icon" onclick="toggleContent('content')"><i class="bi bi-house"></i>&nbsp;&nbsp;DASHBOARD</a>
-    <a href="javascript:void(0);" class="a-icon" onclick="toggleContent('orders')"><i class="bi bi-cart"></i>&nbsp;&nbsp;ORDERS</a>
-    <a href="javascript:void(0);" class="a-icon" onclick="toggleContent('customers')"><i class="bi bi-people"></i>&nbsp;&nbsp;CUSTOMERS</a>
-    <a href="javascript:void(0);" class="a-icon" onclick="toggleContent('products')"><i class="bi bi-columns"></i>&nbsp;&nbsp;PRODUCTS</a>
-    <a href="javascript:void(0);" class="a-icon" onclick="toggleContent('schedule')"><i class="bi bi-calendar-event"></i>&nbsp;&nbsp;SCHEDULE</a>
-    <a href="javascript:void(0);" class="a-icon" onclick="toggleContent('reports')"><i class="bi bi-layout-split"></i>&nbsp;&nbsp;REPORTS</a>
-</div>
-  <!-- CONTENT CARDS FOR CUSTOMERS, TOTAL ORDERS AND SALES -->
-    <div class="container" id="content-container">
-        <!DOCTYPE html>
-        <html>
-        <head>
-         
-        </head>
-        <body>
-            <!DOCTYPE html>
-<html>
-<head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> <!-- Add the Font Awesome stylesheet link -->
 </head>
@@ -51,10 +21,10 @@
                 <div class="card1"id="pending-orders-card" onclick="toggleCard('pending-orders-card')">
                 <div class="card1">
                     <div class="card-header" style="background-color: navy; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; font-size: 13px ;">
-                       TOTAL PENDING ORDERS
+                       TOTAL PENDING ORDER FOR PAYMENT
                     </div>
                     <div class="card-body" style="display: flex; justify-content: space-between;">
-                        <h5 class="card-title" style="font-size: 50px; color: goldenrod;">2341</h5>
+                        <h5 class="card-title" style="font-size: 50px; color: goldenrod;"><?php echo $data["forPaymentTransactions"]?></h5>
                         <i class="fas fa-shopping-cart" style="font-size: 40px; margin-top: 15px;"></i>
                     </div>
                     <div class="card-footer"></div>

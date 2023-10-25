@@ -7,8 +7,11 @@ class  Reports extends Controller
     }
     public function index()
     {
-        $data=[];
-        $this->view("admin/reports", $data);
+        $title = $this->reportModel->getTitle();
+        $data=[
+            "title" => "hi"
+        ];
+        $this->view("test/index", $data);
     }
 
 }
