@@ -205,5 +205,23 @@
 				redirect("transactions/index");
 			}
 		}
+
+		public function payMongo(){
+			require_once('..\vendor\autoload.php');
+
+			$client = new \GuzzleHttp\Client();
+
+			$response = $client->request('POST', 'https://api.paymongo.com/v1/checkout_sessions', [
+  				'body' => '{"data":{"attributes":{"billing":{"name":"Billing_Name","email":"Billing_email","phone":"Billing_Phone"},"send_email_receipt":false,"show_description":false,"show_line_items":true,"line_items":[{"currency":"PHP","amount":123450,"name":"item_name","quantity":2}],"payment_method_types":["gcash","card"]}}}',
+  				'headers' => [
+    				'Content-Type' => 'application/json',
+    				'accept' => 'application/json',
+    				'authorization' => 'Basic c2tfdGVzdF9Ec2c2Mnd5MUpYcHVYUGRMUmJIOThMSmg6',
+  				],
+			]);
+
+			echo $response->getBody();
+			//echo "Hello";
+		}
 	}
 ?>

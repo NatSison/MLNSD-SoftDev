@@ -424,5 +424,16 @@
 				return false;
 			}
 		}
+
+		public function getAllForPaymentTransaction(){
+			$testResult = "hello";
+			return $testResult;
+		}
+
+		
+	
+		public function getPayMongo(){
+
+		}
 	}
 ?>
