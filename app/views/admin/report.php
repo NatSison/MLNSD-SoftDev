@@ -1,5 +1,5 @@
 <?php
-    require APPROOT . "/views/templates/header.php";
+    require APPROOT . "/views/templates/adminHeader.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,10 +124,10 @@
 function toggleCard(cardType) {
         // Define the URLs for each card type
         const cardUrls = {
-            'pending-orders-card': 'pending_orders.html',
-            'pending-orders-shipping': 'pending_shipping_orders.html',
-            'completed-orders': 'completed_orders.html',
-            'total-users': 'total_users.html'
+            'pending-orders-card': 'dashboard.php',
+            'pending-orders-shipping': 'dashboard.php',
+            'completed-orders': 'dashboard.php',
+            'total-users': '#'
         };
 
         // Get the URL based on the card type
