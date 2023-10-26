@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+h1 {
+  color: navy;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+h2 {
+    color: black;
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
+}
+.brand-name span {
+  color: gold;
+}
+
+
+/* STYLE FOR Input BUTTON */
+input{
+  background: navy;
+  color: white;
+  padding: 5px 8px;
+  text-align: center;
+  font-size: 0.7rem;
+  border: none;
+}
+input:hover{
+  background: #1b203d;
+}
+  .search{
+    background-color: white;
+    border: 2px solid #ddd;
+    
+  }
+
+
+
+
+
+.btn-search1 {
+  font-size: 0.5rem;
+  background: navy;
+  color: white;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  margin-left: 0rem;
+}
+h3 {
+  color: #999;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 10px;
+  border-bottom: 2px solid goldenrod;
+}
+/* STYLE FOR THE TABLE */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; 
+}
+
+tr:hover {
+    background-color: #d1d1d1; 
+}
+/* STYLE FOR SIDEBAR */
+/* LOGO ADJUSTMENT */
+.logo {
+  font-size: 30px;
+  margin: 0;
+  margin-top: 30px;
+  margin-left: 60px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: gold;
+}
+/* MAIN DASHBOARD */
+.sidebar {
+  width: 20vw;
+  background-color: navy;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 20px;
+}
+.sidebar a {
+  display: block;
+  color: white;
+  font-size: 15px;
+  padding: 15px 8px 15px 32px;
+  margin-left: 30px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.sidebar a:hover {
+  background-color: #1b203d;
+  border-radius: 10px;
+}
+.container {
+  position: absolute;
+  right: 0;
+  width: 80vw;
+  height: 100vh;
+  background: #f1f1f1;
+}
+
+/* FORMAT FOR THE CONTENT  */
+.container .content {
+  position: relative;
+  margin-top: 10vh;
+  min-height: 90vh;
+  background: #f1f1f1;
+}
+
+/* STYLE FOR THE TABLE FOR PENDING PAYMENTS */
+.container .content .content-1 .pending-payments {
+  min-height: 50vh;
+  flex: 3;
+  background: white;
+  margin: 0 25px 25px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.pending-shipping{
+  min-height: 50vh;
+  flex: 3;
+  background: white;
+  margin: 0 25px 25px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.container .content .content-2 .completed-orders {
+  min-height: 50vh;
+  flex: 2;
+  background: white;
+  margin: 0 25px 25px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.container .content .content-2 .new-orders table td:nth-child(1) {
+  height: 40px;
+  width: 40px;
+}
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+    }
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+}
+@media screen and (max-width: 1050px) {
+  .side-menu li {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .side-menu li span {
+    display: none;
+  }
+  .side-menu {
+    align-items: center;
+  }
+  .sidemenu li img {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media screen and (max-width: 536px) {
+  .brand-name h1 {
+    font-size: 16px;
+  }
+  .container .content .cards {
+    justify-content: center;
+  }
+  .side-menu li img {
+    width: 30px;
+    height: 30px;
+  }
+  .container .content .content-2 .recent-payments table th:nth-child(2),
+  .container .content .content-2 .recent-payments table td:nth-child(2) {
+    display: none;
+  }
+}
