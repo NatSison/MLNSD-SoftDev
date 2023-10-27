@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+/* MAIN DASHBOARD */
+.sidebar {
+  width: 20vw;
+  background-color: navy;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 20px;
+}
+.sidebar a {
+  display: block;
+  color: white;
+  font-size: 15px;
+  padding: 15px 8px 15px 32px;
+  margin-left: 30px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.sidebar a:hover {
+  background-color: #1b203d;
+  border-radius: 10px;
+}
+.container {
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+}
+/* STYLE FOR THE CARDS */
+.card1 {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+}
+.card1:hover {
+    transform: scale(1.05);
+}
+tr:hover {
+  background-color: #d1d1d1; 
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 80%;
+    }
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+}
+@media screen and (max-width: 1050px) {
+  .side-menu li {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .side-menu li span {
+    display: none;
+  }
+  .side-menu {
+    align-items: center;
+  }
+  .sidemenu li img {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media screen and (max-width: 536px) {
+  .brand-name h1 {
+    font-size: 16px;
+  }
+  .container .content .cards {
+    justify-content: center;
+  }
+  .side-menu li img {
+    width: 30px;
+    height: 30px;
+  }
+  .container .content .content-2 .recent-payments table th:nth-child(2),
+  .container .content .content-2 .recent-payments table td:nth-child(2) {
+    display: none;
+  }
+}
+/* MAKING THE SIDEBAR RESPONSIVE */
+
