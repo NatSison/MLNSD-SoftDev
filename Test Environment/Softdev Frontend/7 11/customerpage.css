@@ -1,0 +1,466 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+h3 {
+    font-size: xx-large;
+}
+/* STYLE FOR THE SECTION*/
+section{
+    padding: 5% 10%;
+}
+.main-home{
+    width: 100%;
+    height: 100vh;
+    background-image: url(images/new.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    background-attachment: fixed;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    align-items: center;
+    color: #fff;
+}
+.main-text h1{
+    color: black;
+    font-size: 2.7rem;
+    text-transform: capitalize;
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 6px 0 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.main-text p {
+    color: white;
+    font-size: 25px;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.main-btn {
+    display: inline-block;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-decoration: none;
+    border: 2px solid;
+    padding: 12px 25px;
+    transition: all .42s ease;
+}
+.second-btn {
+    padding: 10px 14px;
+    background: navy;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    font-size: 14px;
+}
+.second-btn:hover {
+    background-color: #1b203d;
+}
+.btn {
+ padding: 10px 14px;
+ background: navy;
+ color: navy;
+ border-radius: 14px;
+ font-size: 14px;
+}
+.main-btn:hover{
+    background-color: beige;
+}
+
+
+/* Styling the Card Container */
+.card-sm {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
+
+}
+/* Hover to add some slight zoom effect on hover */
+.card-sm:hover {
+    transform: scale(1.05);
+}
+/* Center the imagae inside the card */
+.card-sm .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+}
+.card-sm .image img {
+   max-height: 100%;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    justify-content: center;
+}
+/* Adjust style for the Product Name */
+.product-name {
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem
+}
+/* Style for Product Detals */
+.product-details{
+    margin-top: 10px;
+}
+/* Prize */
+.prize {
+    font-weight: bold;
+    font-size: 1.2rem
+}
+/* Styling the button */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+/* Styling the buttons */
+.action-buttons2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.action-buttons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+.action-buttons .view-details-button {
+    background-color: navy;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.view-details-button:hover {
+    background-color: #1b203d;
+}
+.click-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+.click-button:hover {
+    background-color: #0056b3;
+}
+/* DOOR PRODUCTS/ STYLE THE CARDS*/
+.card1 {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 50vh;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card2 {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 50vh;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+.card1:hover {
+    transform: scale(1.05);
+}
+
+.card1.image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+.door-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.door-info h3 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+.stars {
+    margin: 10px 0;
+}
+
+.stars i {
+    font-size: 16px;
+    color: #FFD700;
+}
+
+.door-info span {
+    font-size: 16px;
+    color: #333;
+}
+/* STYLE FOR ABOUT US */
+.about {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.about-img img {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+.about-text span {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 30px;
+    text-transform: uppercase;
+    color: navy;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.about-text {
+    font-size: 0.938rem;
+    margin: 0.5rem 0 1.4rem;
+    margin-top: 15px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.btn {
+    padding: 10px 14px;
+    background: navajowhite;
+    color: black;
+    border-radius: 0.3rem;
+    font-size: 14px;
+}
+
+/* FEATURED PRODUCTS/ STYLE THE CARDS*/
+
+.card2 {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    max-width: 100rem;
+    margin: 0 auto;
+}  
+.card2 .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+.card2 .image img {
+    max-height: 100%;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+}
+
+.container {
+    max-width: 1200px;
+    width: 95%;
+}
+/* STYLE FOT THE BUTTONS FOR PREV/NEXT SLIDE */
+.slider-wrapper {
+    position: relative;
+}
+.slider-wrapper .slide-button {
+    top: 50%;
+    height: 50px;
+    width: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: navy;
+    font-size: 2.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+}
+.slider-wrapper .slide-button:hover {
+    background-color: #1b203d;
+}  
+.slider-wrapper .slide-button#prev-slide {
+    left: -20px;
+    display: none;
+}
+.slider-wrapper .slide-button#next-slide {
+    right: -20px;
+}
+/* STYLE FOR THE IMAGE SLIDER */
+.slider-wrapper .image-list {
+    display:grid;
+    gap: 18px;
+    margin-bottom: 30px;
+    font-size: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    grid-template-columns: repeat(10,1fr);
+}
+.slider-wrapper .image-list::-webkit-scrollbar{
+    display: none;
+}
+
+.slider-wrapper .image-list .image-item {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+/* STYLE FOR THE SLIDER-SCROLLBAR */
+.container .slider-scrollbar {
+    height: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+ 
+}
+/* STYLE FOR THE SCROLLBAR-TRACK */
+.slider-scrollbar .scrollbar-track {
+    height: 2px;
+    width: 100%;
+    position: relative;
+    background: #ccc;
+    border-radius: 4px;
+}
+.slider-scrollbar:hover .scrollbar-track {
+    height: 4px;
+}
+/* STYLE FOR THE SCROLLBAR-THUMB */
+.slider-scrollbar .scrollbar-thumb {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    background: navy;
+    border-radius: inherit;
+    cursor: grab;
+}
+.slider-scrollbar .scrollbar-thumb:active {
+    top: -2px;
+    height: 8px;
+    cursor: grabbing;
+
+}
+.slider-scrollbar .scrollbar-thumb::after {
+    left: 0;
+    right: 0;
+    top: -10px;
+    bottom: -10px;
+    content: "";
+    position: absolute;
+}
+/* IMAGE MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+/* STYLE FOR MOBILE */
+@media (max-width: 1023px) {
+    .slider-wrapper .slide-button {
+        display: none!important;
+    }
+    .slider-wrapper .image-list {
+        gap: 10px;
+        margin-bottom: 15px ;
+    }
+    .slider-wrapper .image-list .image-item {
+        width: 180px;
+        height: 230px;
+    }
+    .slider-scrollbar .scrollbar-thumb {
+        width: 20%;
+    }
+}
+/* STYLE FOR DOORS DESCRIPTION OR CONTAINER */
+.doors {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    width: 200px;
+    margin: 10px auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+/* STYLE FOR FOOTER */
+footer {
+    background-color: gold;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.section2-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact, .opening-hours, .inquiries {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.contact h2, .opening-hours h3, .inquiries h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.contact a, .opening-hours a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+.contact a:hover, .opening-hours a:hover {
+    text-decoration: underline;
+}
