@@ -1,5 +1,7 @@
 <?php
-    require APPROOT . '/views/templates/header.php';
+    require APPROOT . '/views/templates/adminHeader.php';
+    $transactionId = $data["transId"];
+    $customerId = $data["custId"];
 ?>
 
 <html lang="en"><head>
@@ -23,18 +25,13 @@
     </script>
 <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
 <body>
-    <?php echo $data["testData"]?> <br>
-    <?php echo $data["daterange"]?> <br>
-    <?php echo $data["startDate"]?> <br>
-    <?php echo $data["endDate"]?> <br>
-    <?php echo $data["id"]?>
 <div class="container">
     <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         CUSTOMER DETAILS
     </h1>
     <div class="card card-body mb-3">
         <h4 class="card-title" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
-            Customer name: Nathaniel Sison<!--            <form action="--><!--/admin/customers/delete/--><!--" method="post" style="display: inline">-->
+            Customer name: <?php echo $data['customer']->fname . " " . $data['customer']->lname?><!--            <form action="--><!--/admin/customers/delete/--><!--" method="post" style="display: inline">-->
 <!--                <input type="submit" value="Delete" class="btn btn-danger float-end me-1">-->
 <!--            </form>-->
             <a class="btn float-end me-1" href="http://localhost/MLNSD-SoftDev/admin/customers">
@@ -45,16 +42,15 @@
             </a>
         </h4>
         <div class="card-body bg-light p-2 mb-3" style="font-family: 'Times New Roman', Times, serif;">
-            <b>Customer ID:</b> 5 <br>
-            <b>Contact Number:</b> 09295271894 <br>
-            <b>Email Address:</b> anielsison@gmail.com <br>
-            <b>Address:</b> 5th street, Pasig, Metro Manila, 1611 <br>
-            <b>Profile Created On:</b> 2023-06-01 14:05:59 <br>
+            <b>Customer ID:</b> <?php echo $customerId?> <br>
+            <b>Contact Number:</b> <?php echo $data['customer']->contactNumber ?> <br>
+            <b>Email Address:</b> <?php echo $data['customer']->email ?> <br>
+            <b>Address:</b> <?php echo $data['customer']->streetAddress . " " . $data['customer']->city . " " . $data['customer']->province . " " . $data['customer']->postalCode ?> <br>
+            <b>Profile Created On:</b> <?php echo $data['customer']->createdOn?> <br>
         </div>
     </div>
     <div class="container">
-        <?php $transactionId = 49;?>
-        <form action="<?php echo URLROOT ."/tests/updateDelivery?transId=" . $transactionId; ?>" method="post">
+        <form action="<?php echo URLROOT ."/transactions/updateDelivery?transId=" . $transactionId . "&cust=" . $customerId; ?>" method="post">
             <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
             Set Delivery and/or Installation
             </h1>
@@ -62,19 +58,17 @@
                 <h4 class="card-title" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> 
                    Product name: D7
                 <input class="btn btn-primary px-5" type="submit" id="submit" value="setDelivery">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Set Delivery/Installation Date
-                </a>
                 <br>
-                Is for Installation?: True
-                <input type="text" class="w-100 form-control mt-5" type="text" name="daterange" required value="<?php echo date('m/d/Y',strtotime('-1 Year')) . ' - ' . date('m/d/Y') ?>" />
+                Is for Installation?: <?php echo $data['transaction']->forProductInstallation ?>
+                <input type="text" class="w-100 form-control mt-5" name="daterange" required value="<?php //echo date('d/m/Y', strtotime($data['transaction']->productInstallationStart)) . ' - ' . date('d/m/Y', strtotime($data['transaction']->productInstallationEnd)) ?>" />
                 </h4>
                 <div class="card-body bg-light p-2 mb-3" style="font-family: 'Times New Roman', Times, serif;">
                 <b>Product ID:</b><?php echo $transactionId;?><br>
                 <b>Qty:</b> 2 <br>
-                <b>Total Amount:</b> 3000 <br>
+                <b>Total Amount:</b> <?php echo $data['transaction']->amount ?> <br>
 
-                <b>Address:</b> 5th street, Pasig, Metro Manila, 1611 <br>
-                <b>Order Created On:</b> 2023-06-01 14:05:59 <br>
+                <b>Address:</b> <?php echo $data['customer']->streetAddress . " " . $data['customer']->city . " " . $data['customer']->province . " " . $data['customer']->postalCode ?> <br>
+                <b>Order Created On:</b> <?php echo $data['transaction']->createdOn ?> <br>
                 </div>
             </div>
 

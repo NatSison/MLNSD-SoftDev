@@ -223,5 +223,56 @@
 			echo $response->getBody();
 			//echo "Hello";
 		}
+
+		public function updateDelivery(){
+			if($_SERVER["REQUEST_METHOD"] == "POST") {
+				// Sanitize POST Array
+				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				
+				$customerId = $_GET["cust"];
+				$transId = $_GET["transId"];
+				$newStartDate = strtotime(substr($_POST["daterange"], 0, 10));
+				$newStartDate = date("Y-m-d H:i:s", $newStartDate);
+				$newEndDate = strtotime(substr($_POST["daterange"], 12, 11));
+				$newEndDate = date("Y-m-d H:i:s", $newEndDate);
+				$data = [
+					"id" => trim($_GET['transId']),
+            	    "daterange" => trim($_POST["daterange"]),
+            	    "startDate" => $newStartDate,
+            	    "endDate" => $newEndDate,
+            	    "testData" => "Working",
+					//"transId" => trim($_Get['transId'])
+            	];
+
+				if ($this->transactionModel->updateInstallation($data)) {
+					flash("message", "Updated Installation Schedule");
+					redirect("admin/login");
+				} else {
+					die("Something went wrong");
+				}
+
+            	$this->view("admin/login",$data);
+			}else{
+				$currentURL = $_SERVER['REQUEST_URI'];
+				$currentURL = rtrim($currentURL, '?');
+				$segments = explode('/', trim($currentURL, '/'));
+				$code = end($segments);
+				if (preg_match('/cust(\d+)/', $code, $matches)) {
+					$customerId = $matches[1];
+				}
+				if (preg_match('/(\d+)cust/', $code, $matches)) {
+					$transId = $matches[1];
+				}
+				$customer = $this->customerModel->getCustomerById($customerId);
+				$transaction = $this->transactionModel->getTransaction($transId);
+				$data = [
+                    "customer" => $customer,
+					"transaction" => $transaction,
+					"transId" => $transId,
+					"custId" => $customerId,
+				];
+				$this->view("transactions/updateDelivery",$data);
+			}
+		}
 	}
 ?>

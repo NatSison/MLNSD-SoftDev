@@ -130,7 +130,7 @@
 		
 		public function getPendingTransactionForPayment(){
 			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, t.amount, p.method, t.forProductInstallation
+				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, t.amount, p.method, t.forProductInstallation, t.productInstallationStart
 				FROM transactions t
 				LEFT JOIN customers c ON c.id = t.customerId
 				LEFT JOIN payments p ON p.transactionId = t.id
@@ -143,7 +143,7 @@
 		
 		public function getPendingTransactionForShipping(){
 			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress, t.forProductInstallation
+				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress, t.forProductInstallation, t.productInstallationStart
 				FROM transactions t
 				LEFT JOIN customers c ON c.id = t.customerId
 				LEFT JOIN delivery d ON d.transactionId = t.id
@@ -428,6 +428,29 @@
 		public function getAllForPaymentTransaction(){
 			$testResult = "hello";
 			return $testResult;
+		}
+
+		public function updateInstallation($data){
+			$this->db->query("UPDATE transactions SET productInstallationStart = :startDate, productInstallationEnd = :endDate, updatedOn = now(), updatedBy = 'System' WHERE id = :id");
+			
+			// Bind
+			$this->db->bind(":startDate", $data["startDate"]);
+			$this->db->bind(":endDate", $data["endDate"]);
+			$this->db->bind(":id", $data["id"]);
+			
+			// Execute
+			if($this->db->execute()){
+				$this->db->query("UPDATE delivery SET shippingDate = :startDate WHERE transactionID = :id");
+				$this->db->bind(":startDate", $data["startDate"]);
+				$this->db->bind(":id", $data["id"]);
+				if($this->db->execute()){
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
 		}
 
 		

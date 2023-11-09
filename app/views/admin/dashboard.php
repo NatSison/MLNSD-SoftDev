@@ -15,6 +15,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Method</th>
                         <th scope="col">For Product Installation?</th>
+                        <th scope="col">Installation Period</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -28,12 +29,13 @@
                             <td><?php echo $details->status; ?></td>
                             <td><?php echo $details->method; ?></td>
                             <td><?php echo $details->forProductInstallation;?></td>
+                            <td><?php echo $details->productInstallationStart;?></td>
                             <td>
                                 <form class="mx-1" action="<?php echo URLROOT."/admin/dashboard/markAsPaid/".$details->transactionId ?>" method="post" style="display: inline">
                                     <input type="submit" value="Mark as Paid" class="btn btn-success">
                                 </form>
-                                <form class="mx-1" action="<?php echo URLROOT."/transactions/seeDetails/".$details->transactionId ?>" method="post" style="display: inline">
-                                    <input type="submit" value="See Details" class="btn btn-primary">
+                                <form class="mx-1" action="<?php echo URLROOT."/transactions/updateDelivery/".$details->transactionId ."cust".$details->customerId ?>" style="display: inline">
+                                    <input type="submit" value="Update Delivery/Installation" class="btn btn-primary">
                                 </form>
                                 <form class="mx-1" action="<?php echo URLROOT."/transactions/cancelOrder/".$details->transactionId ?>" method="post" style="display: inline">
                                     <input type="submit" value="Cancel" class="btn btn-danger">
@@ -61,6 +63,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Method</th>
                         <th scope="col">For Product Installation?</th>
+                        <th scope="col">Installation Period</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -74,11 +77,12 @@
                         <td><?php echo $details->status; ?></td>
                         <td><?php echo $details->method; ?></td>
                         <td><?php echo $details->forProductInstallation;?></td>
+                        <td><?php echo $details->productInstallationStart;?></td>
                         <td>
                             <form class="mx-1" action="<?php echo URLROOT."/admin/dashboard/completeOrder/".$details->transactionId ?>" method="post" style="display: inline">
                                 <input type="submit" value="Mark as Complete" class="btn btn-success">
                             </form>
-                            <form class="mx-1" action="<?php echo URLROOT."/transactions/seeDetails/".$details->transactionId ?>" method="post" style="display: inline">
+                            <form class="mx-1" action="<?php echo URLROOT."/transactions/updateDelivery/".$details->transactionId ."cust".$details->customerId ?>" method="post" style="display: inline">
                                 <input type="submit" value="See Details" class="btn btn-primary">
                             </form>
                             <form class="mx-1" action="<?php echo URLROOT."/transactions/cancelOrder/".$details->transactionId ?>" method="post" style="display: inline">
