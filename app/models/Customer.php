@@ -120,4 +120,27 @@
 				return false;
 			}
 		}
+
+        public function addInquiry($data){
+			$this->db->query("SELECT id AS customerID FROM customers WHERE email = :email AND contactNumber = :email");
+			// Bind Values
+			$this->db->bind(":email", $data['email']);
+			$this->db->bind(":contactNumber", $data['contactNumber']);
+		
+			// Execute
+			if($this->db->execute()){
+                $existingCustomerId = $this->db->execute();
+				$this->db->query("INSERT INTO inquiry_forms (existingCustomerId,email,contactNumber,inquiryStatement,createdOn) VALUES ($existingCustomerId,:email,:contactNumber,:inquiryStatement,now())");
+                $this->db->bind(":email", $data['email']);
+                $this->db->bind(":contactNumber", $data['contactNumber']);
+                $this->db->bind("inquiryStatement", $data['inquiryStatement']);
+
+                if($this->db->execute()){
+                    return true;   
+                }else {
+				    return false;
+                }
+            }
+		}
     }
+?>

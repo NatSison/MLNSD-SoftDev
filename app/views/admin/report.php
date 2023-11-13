@@ -90,6 +90,7 @@
                                         <th>PRODUCT_VARID</th>
                                         <th>PRICE</th>
                                         <th>QTY</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
             
@@ -100,6 +101,7 @@
                                         <td><?php echo $details->id; ?></td>
                                         <td><?php echo $details->price; ?></td>
                                         <td><?php echo $details->stock; ?></td>
+                                        <td><input type="button" value="Edit"> </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

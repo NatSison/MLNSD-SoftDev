@@ -1,7 +1,15 @@
-<?php
-    require APPROOT . '/views/templates/header.php';
-?>
-<html lang="en">
+<html lang="en"><head><script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head><body><br>
+    <font size="1"><table class="xdebug-error xe-warning" dir="ltr" border="1" cellspacing="0" cellpadding="1">
+    <tbody><tr><th align="left" bgcolor="#f57900" colspan="5"><span style="background-color: #cc0000; color: #fce94f; font-size: x-large;">( ! )</span> Warning: Undefined property: stdClass::$auto_increment in C:\wamp64\www\MLNSD-SoftDev\app\controllers\admin\Login.php on line <i>80</i></th></tr>
+    <tr><th align="left" bgcolor="#e9b96e" colspan="5">Call Stack</th></tr>
+    <tr><th align="center" bgcolor="#eeeeec">#</th><th align="left" bgcolor="#eeeeec">Time</th><th align="left" bgcolor="#eeeeec">Memory</th><th align="left" bgcolor="#eeeeec">Function</th><th align="left" bgcolor="#eeeeec">Location</th></tr>
+    <tr><td bgcolor="#eeeeec" align="center">1</td><td bgcolor="#eeeeec" align="center">0.0004</td><td bgcolor="#eeeeec" align="right">365200</td><td bgcolor="#eeeeec">{main}(  )</td><td title="C:\wamp64\www\MLNSD-SoftDev\public\index.php" bgcolor="#eeeeec">...\index.php<b>:</b>0</td></tr>
+    <tr><td bgcolor="#eeeeec" align="center">2</td><td bgcolor="#eeeeec" align="center">0.0036</td><td bgcolor="#eeeeec" align="right">369912</td><td bgcolor="#eeeeec">Core-&gt;__construct(  )</td><td title="C:\wamp64\www\MLNSD-SoftDev\public\index.php" bgcolor="#eeeeec">...\index.php<b>:</b>5</td></tr>
+    <tr><td bgcolor="#eeeeec" align="center">3</td><td bgcolor="#eeeeec" align="center">0.0058</td><td bgcolor="#eeeeec" align="right">373616</td><td bgcolor="#eeeeec">Login-&gt;signup( <span>'customer'</span> )</td><td title="C:\wamp64\www\MLNSD-SoftDev\app\libraries\Core.php" bgcolor="#eeeeec">...\Core.php<b>:</b>79</td></tr>
+    </tbody></table></font>
+    
+    
+    
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,46 +19,105 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
         <title>Villamin Wood &amp; Iron Works</title>
         
+        <script type="text/javascript" language="JavaScript">
+            var element = document.querySelector("form");
+            element.addEventListener("submit", function(event) {
+                event.preventDefault();
+                // actual logic, e.g. validate the form
+                alert("Form submission cancelled.");
+            });
+        </script>
     
+    
+    <header class="container-fluid bg-warning p-3">
+        <div class="row d-flex align-items-center mx-3">
+            <div class="col-1 bg-gradient text-center" style="background-color: darkblue">
+                <p class="display-5 fw-bold text-warning">V</p>
+            </div>
+            <div class="col-5 text-white">
+                <h5>
+                    Villamin Wood &amp; Iron Works            </h5>
+            </div>
+            <div class="col-6 text-white text-end">
+                <h5>
+                    Subok na matibay since 1983            </h5>
+            </div>
+        </div>
+    
+    </header>
+    
+    <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background-color: darkblue">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse col-8 collapse show" id="navbarSupportedContent" style="">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-2">
+                                        <li class="nav-item px-4">
+                            <a class="nav-link text-white" href="http://localhost/MLNSD-SoftDev/admin/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-white" href="http://localhost/MLNSD-SoftDev/admin/customers">Customers</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-white" href="http://localhost/MLNSD-SoftDev/admin/products">Products</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link text-white" href="http://localhost/MLNSD-SoftDev/admin/reports">Reports</a>
+                        </li>
+                </ul>
+                        <div class="d-flex justify-content-end">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-2">
+                                <li class="nav-item px-2">
+                                    <a class="nav-link text-white" href="http://localhost/MLNSD-SoftDev/admin/profile">
+                                        <i class="fa fa-solid fa-user" style="font-size:24px;color:white" aria-hidden="true">
+                                            Nathaniel                                    </i>
+                                    </a>
+                                </li>
+                                <li class="nav-item px-4">
+                                    <a class="nav-link text-white" href="http://localhost/MLNSD-SoftDev/admin/login/logout">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                            </div>
+        </div>
+    </nav>
     <div class="container"><div class="container">
         <div class="card card-body bg-light mt-3" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);">
             <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 CUSTOMER INQUIRY FORM </h1>
             <p style="font-family: 'Times New Roman', Times, serif; font-size:larger">This form will be used to gather your inquiries, responses will be sent through your email listed below. </p>
             <br>
-            <form action="<?php echo URLROOT ."/tests"; ?>" method="post">
+            <form action="http://localhost/MLNSD-SoftDev/admin/login/signup" method="post">
                 
                 <!-------------------- Start - Admin's information ---------------->
                 <h3 style="font-family: 'Times New Roman', Times, serif; font-weight:bold">
                     Personal Information:
                 </h3>
-                    <div class="form-group mb-3" style="font-family: 'Times New Roman', Times, serif;">
+                <div class="form-group mb-3" style="font-family: 'Times New Roman', Times, serif;">
                     
-                        <label for="fname">First name: <sup>*</sup></label>
-                        <input type="text" name="fname" class="form-control form-control" value="" required="">
-                        <span class="invalid-feedback"></span>
+                    <label for="fname">First name: <sup>*</sup></label>
+                    <input type="text" name="fname" class="form-control form-control" value="" required="">
+                    <span class="invalid-feedback"></span>
                     
-                       <label for="lname">Last name: <sup>*</sup></label>
-                        <input type="text" name="lname" class="form-control form-control" value="" required="">
-                        <span class="invalid-feedback"></span>
+                    <label for="lname">Last name: <sup>*</sup></label>
+                    <input type="text" name="lname" class="form-control form-control" value="" required="">
+                    <span class="invalid-feedback"></span>
                     
                     
-                        <label for="contactNumber">Contact Number: <sup>*</sup></label>
-                        <input type="tel" name="contactNumber" class="form-control form-control "value="" placeholder="09121231234 or 0912-123-1234" required="">
-                        <span class="invalid-feedback"></span>
+                    <label for="contactNumber">Contact Number: <sup>*</sup></label>
+                    <input type="tel" name="contactNumber" class="form-control form-control "value="" placeholder="09121231234 or 0912-123-1234" required="">
+                    <span class="invalid-feedback"></span>
                     
-                       <label for="email">Email: <sup>*</sup></label>
-                        <input type="email" name="email" class="form-control form-control " value="" required="">
-                       <span class="invalid-feedback"></span>
+                    <label for="email">Email: <sup>*</sup></label>
+                    <input type="email" name="email" class="form-control form-control " value="" required="">
+                    <span class="invalid-feedback"></span>
                      
-                        <label for="inquiryStatement" class="form-label">Note:</label>
-                        <p>(Provide your inquiries in the note below:)</p>
-                        <textarea name="inquiryStatement" class="form-control" id="inquiryStatement" rows="5" required></textarea>
-
-                        <input type="submit" value="submit">
+                    <label for="exampleFormControlTextarea1" class="form-label">Note:</label>
+                    <p>(Provide your inquiries in the note below:)</p>
+                        <textarea name="reason" class="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
                 
-                    </div>
-                    </form>
+                </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js" crossorigin="anonymous"></script>
     <script src="http://localhost/MLNSD-SoftDev/flickity.js"></script>
