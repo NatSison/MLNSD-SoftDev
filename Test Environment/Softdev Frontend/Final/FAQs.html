@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="FAQs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b9ca0524a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      
+    </style>
+</head>
+
+<body style="background-color: beige;">
+    <div class="container">
+        <div class="header">
+            <h1>FREQUENTLY ASKED QUESTIONS</h1>
+        </div>
+
+        <div class="faqs">
+            <button class="icon">
+                Q: What other services do you offer?
+                <i class="bi bi-plus"></i>
+            </button>
+            <div class="text">
+                <p>A: Installation and estimation of aluminum products, roofing, and grills.</p>
+            </div>
+        </div>
+
+        <div class="faqs">
+            <button class="icon">
+                Q: What other products do you offer?
+                <i class="bi bi-plus"></i>
+            </button>
+            <div class="text">
+                <p>A: Door Jamb, Roll Up, Trusses, Grills, Poly Carbonate, and more.</p>
+            </div>
+        </div>
+
+        <div class="faqs">
+            <button class="icon">
+                Q: Do you deliver? How much is the delivery fee?
+                <i class="bi bi-plus"></i>
+            </button>
+            <div class="text">
+                <p>A: Yes, delivery is available with Lalamove rates.</p>
+            </div>
+        </div>
+
+        <div class="faqs">
+            <button class="icon">
+                Q: Do you accept customized orders?
+                <i class="bi bi-plus"></i>
+            </button>
+            <div class="text">
+                <p>A: Yes, please feel free to contact us. Our details are in the About Us Section.</p>
+            </div>
+        </div>
+
+        <div class="faqs active">
+            <button class="icon">
+                Q: What are your modes of payment?
+                <i class="bi bi-plus"></i>
+            </button>
+            <div class="text">
+                <p>A: We accept Cash-on-Delivery, Gcash, and Bank Transfer.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="section2 text-center text-white py-5" style="background-color: navy;">
+            <div class="container section2-content">
+                <div class="row">
+                    <div class="contact col-md-4">
+                        <h2 class="mb-4">Contact Us</h2>
+                        <div class="contact-info">
+                            <a type="button" href="tel:09292799021" target="_blank" class="d-flex align-items-center text-white text-decoration-none">
+                                <i class="bi bi-telephone me-2"></i>
+                                <span>Phone: +63 929 279 9021</span>
+                            </a>
+                            <a href="https://www.facebook.com/Villamin-Wood-Iron-Glass-Aluminum-Works-479583689050461" alt="facebook" class="d-flex align-items-center text-white text-decoration-none mt-2">
+                                <i class="bi bi-facebook me-2"></i>
+                                <span>Visit us on Facebook</span>
+                            </a>
+                            <a type="button" href="mailto:villaminwoodworks@gmail.com" target="_blank" class="d-flex align-items-center text-white text-decoration-none mt-2">
+                                <i class="bi bi-envelope me-2"></i>
+                                <span>Email: villaminwoodworks@gmail.com</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="opening-hours col-md-4">
+                        <div class="hours">
+                            <h3>OPENING HOURS</h3>
+                            <p>MONDAY - SATURDAY: 11:00 AM - 6:00 PM</p>
+                            <p>SUNDAY: Closed</p>
+                        </div>
+                    </div>
+                    <div class="inquiries col-md-4">
+                        <a href="https://example.com">
+                            <h3>For More Inquiries</h3>
+                            <p>Feel free to reach out to us for any further inquiries or assistance.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright text-center py-3" style="font-size: 18px; background-color: black; color: white;">
+            &copy; 2023 Villamin Wood and Iron Works. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        var acc = document.getElementsByClassName("icon");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                this.parentElement.classList.toggle("active");
+                var pannel = this.nextElementSibling;
+                if (pannel.style.display === "block") {
+                    pannel.style.display = "none";
+                } else {
+                    pannel.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

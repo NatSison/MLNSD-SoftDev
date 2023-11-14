@@ -1,0 +1,142 @@
+   /* Reset some styles */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.card {
+    width: 100%;
+    border: 2px solid navy;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+}
+
+/* CONTAINER FOR ABOUT US */
+.container-about {
+    background-color: white;
+    border: 2px solid navy;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.about-title {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.visit-link {
+    color: navy;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.visit-link:hover {
+    color: #00548b; /* Change this to your desired link hover color */
+}
+
+/* Mission and Vision section styles */
+.section3 {
+    width: 100%;
+    border: 2px solid navy;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.section3 h1 {
+    color: navy;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.section3 p {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+ /* STYLE FOR FOOTER */
+ footer {
+    background-color: gold;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.section2-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contact,
+.opening-hours,
+.inquiries {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact h2,
+.opening-hours h3,
+.inquiries h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.contact a,
+.opening-hours a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+.contact a:hover,
+.opening-hours a:hover {
+    text-decoration: underline;
+}
+
+/* INQUIRIES */
+.inquiries a {
+    color: white;
+    text-decoration: none;
+}
+
+/* STYLE FOR FOOTER */
+
+ /* STYLE FOR THE "CONTACT" BUTTONS */
+ .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: navy; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; 
+}
+
+.button:hover {  
+    background-color: #1b203d;
+}
