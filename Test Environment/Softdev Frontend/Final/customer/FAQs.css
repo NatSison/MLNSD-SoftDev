@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: beige;
+}
+
+.container {
+  max-width: 75%;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  margin-top: 50px;
+}
+
+.faqs {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  transition: background-color 0.4s;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.faqs.active {
+  border: none;
+  margin: 10px 0;
+}
+
+.icon {
+  display: flex;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  border: none;
+  transition: background-color 0.4s;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.icon i {
+  font-size: 1.6rem;
+}
+
+.active,
+.icon:hover {
+  background-color: #1a237e;
+  color: white;
+}
+
+.text {
+  padding: 0 2rem 2.5rem 2rem;
+  background-color: white;
+  display: none;
+}
+
+.text p {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+ /* STYLE FOR FOOTER */
+ footer {
+  background-color: gold;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.section2-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact,
+.opening-hours,
+.inquiries {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact h2,
+.opening-hours h3,
+.inquiries h3 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.contact a,
+.opening-hours a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+}
+
+.contact a:hover,
+.opening-hours a:hover {
+  text-decoration: underline;
+}
+
+/* INQUIRIES */
+.inquiries a {
+  color: white;
+  text-decoration: none;
+}
+
+/* STYLE FOR FOOTER */

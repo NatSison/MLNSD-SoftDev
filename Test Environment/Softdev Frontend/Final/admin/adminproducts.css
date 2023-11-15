@@ -1,0 +1,45 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  margin: 0 25px 25px 25px;
+  display: flex;
+ 
+  border-color: navy;
+}
+/* STYLE FOR BUTTON */
+.btn {
+    background: navy;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+  }
+  .btn:hover {
+    background-color: #1b203d;
+  }
+  /*STYLE FOR BUTTON  */
+h2{
+    font-family: t;
+}
+/* STYLE FOR CUSTOM NAVBAR */
+.custom-nav {
+    margin-left: 40px;
+  }
+.nav-link {
+    font-family: 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+  }
+.nav-link.active,
+.nav-link:hover {
+    border-bottom: 2px solid #007bff; 
+    color: navy;
+  }
+  
+
+
+
+/* STYLE FOR CUSTOM NAVBAR */

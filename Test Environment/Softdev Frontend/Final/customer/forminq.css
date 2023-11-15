@@ -1,0 +1,12 @@
+/* STYLE FOR BUTTON */
+.btn {
+    background: navy;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+  }
+  .btn:hover {
+    background-color: #1b203d;
+  }
+  /*STYLE FOR BUTTON  */
+  
