@@ -26,7 +26,6 @@
 					"completedOrders" => $completedOrders,
 					"totalPrice" => $totalPrice
 				];
-				var_dump($data);
 				$this->view("customers/profile", $data);
 			}
 		}

@@ -212,17 +212,23 @@
 			//var_dump($data);
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// Get the data from the form
+				// customer information
+				$customerName =$_POST['customerName'];
+				$customerId = $_POST['customerID'];
+				$contactNumber = $_POST['contactNumber'];
+				$email = $_POST['email'];
+				$customerAddress = $_POST['customerAddress'];
+				// product information
 				$transactionId = $_POST['transactionId'];
 				$product_name = $_POST['product_name'];
+				$color = $_POST['color'];
 				$quantity = $_POST['quantity'];
 				$quantity = (int)$quantity;
 				$varId = $_POST['varId'];
 				$price = $_POST['price'];
-				$decimal = "00";
 				$price = (string)$price;
 				$price = str_replace(".","", $price);
 				$price = (int)$price;
-				var_dump($price);
 				
 				try {
 					$response = $client->request('POST', 'https://api.paymongo.com/v1/checkout_sessions', [
@@ -230,9 +236,9 @@
 							'data' => [
 								'attributes' => [
 									'billing' => [
-										'name' => 'billingName',
-										'email' => 'email@email.com',
-										'phone' => '09123456789'
+										'name' => $customerName,
+										'email' => $email,
+										'phone' => $contactNumber
 									],
 									'send_email_receipt' => false,
 									'show_description' => false,
@@ -242,8 +248,8 @@
 										[
 											'currency' => 'PHP',
 											'amount' => $price,
-											'description' => 'prodDescription',
-											'name' => 'prodName',
+											'description' => $color,
+											'name' => $product_name,
 											'quantity' => $quantity,
 										]
 									],

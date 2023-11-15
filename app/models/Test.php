@@ -1,460 +1,316 @@
 <?php
-	class Test {
-		private $db;
-		
-		public function __construct(){
-			$this->db = new Database;
+	class Customers extends Controller {
+		public function __construct() {
+			$this->customerModel = $this->model("Customer");
+			$this->transactionModel = $this->model("Transaction");
 		}
 		
-		/***************** To Create New Transaction *****************/
-		public function createTransaction(){
-			if(!isset($_SESSION["user_info"]) OR !$_SESSION["login"]) {
-				if(!isset($_SESSION["admin_info"]) OR !$_SESSION["admin_login"]){
-					flash("message", "Please login in order to use that feature!", "alert alert-danger");
-					redirectCurrent();
-				}else{
-					//$newTransaction = $this->db->query("INSERT INTO transactions (customerId, status, active, createdOn, createdBy) VALUE (:customerId, 'PENDING', '1', now(), 'System')");
+		public function index(){
+			 $this->login();
+		}
+		
+		public function	profile() {
+			if (!isset($_SESSION["user_info"]) or !$_SESSION["login"]) {
+				flash("message", "Please login in order to use that feature!", "alert alert-danger");
+				redirect("customers");
+			} else {
+				$totalPrice = $this->transactionModel->getAllPricesForPayment();
+				$forPaymentOrders = $this->transactionModel->getActiveForPaymentOrderProducts();
+				$forShippingOrders = $this->transactionModel->getActiveForShippingOrderProducts();
+				$completedOrders = $this->transactionModel->getCompletedOrderProducts();
+				$data = [
+					"title" => "Profile: ",
+					"user_info" => $_SESSION["user_info"],
+					"forPaymentOrders" => $forPaymentOrders,
+					"forShippingOrders" => $forShippingOrders,
+					"completedOrders" => $completedOrders,
+					"totalPrice" => $totalPrice
+				];
+				$this->view("customers/profile", $data);
+			}
+		}
+		public function login(){
+			if(isset($_SESSION["admin_info"])){
+				if(isset($_SESSION["admin_login"])){
+					flash("message", "Admin in Session", "alert alert-danger");
+					redirect("admin/products");
+				}
+			}else if(isset($_SESSION["user_info"])) {
+				if($_SESSION["login"]){
+					redirect("index");
+				}
+			}
+			
+			if($_SERVER["REQUEST_METHOD"] == "POST"){
+				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 				
-					/****STATUS is only "PENDING", "FOR PAYMENT", "FOR SHIPPING", "COMPLETED", "CANCELLED" ************/
-					/*** CREATE NEW TRANSACTION WHEN THERE IS NO ACTIVE TRANSACTION ***/
+				$data = [
+					"username" => trim($_POST["username"]),
+					"password" => trim($_POST["password"]),
+					"error" => []
+				];
+				
+				// Validation
+				if (empty($data["username"])) {
+					$data["error"]["username_err"] = "Please enter username!";
+				}
+				
+				if (empty($data["password"])) {
+					$data["error"]["password_err"] = "Please enter password!";
+				}
+				
+				if(empty($data["error"])){
+					// Check login
+					$login_result = $this->customerModel->usernameChecker($data["username"]);
 					
-					// Bind Values
-					//$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-
-					// Execute
-					//if($newTransaction){
-					//	return true;
-					//} else {
-					//	return false;
-					//}
-				}
-			}else{
-				$this->db->query("INSERT INTO transactions (customerId, status, active, createdOn, createdBy) VALUE (:customerId, 'PENDING', '1', now(), 'System')");
-				
-				/****STATUS is only "PENDING", "FOR PAYMENT", "FOR SHIPPING", "COMPLETED", "CANCELLED" ************/
-				/*** CREATE NEW TRANSACTION WHEN THERE IS NO ACTIVE TRANSACTION ***/
-				
-				// Bind Values
-				$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-
-				// Execute
-				if($this-> db->execute()){
-					return true;
+					if(empty($login_result)) {
+						flash("message", "Cannot find username! Please check.", "alert alert-danger");
+						redirectCurrent();
+					} elseif (!password_verify($data["password"], $login_result->password)) {
+						flash("message", "Incorrect password! Please try again", "alert alert-danger");
+						redirectCurrent();
+					} elseif (password_verify($data["password"], $login_result->password)) {
+						flash("message", "You are now logged in!");
+						$_SESSION["login"] = "1";
+						$_SESSION["user_info"] = $this->customerModel->getCustomerById($login_result->custId);
+						
+						redirect("index");
+					} else {
+						flash("message", "Something went wrong! Please see support!", "alert alert-danger");
+						redirectCurrent();
+					}
 				} else {
-					return false;
+					//Load view with errors
+					$this->view("customers/login", $data);
 				}
+			} else {
+				$data = [
+					"username" => "",
+					"password" => ""
+				];
+				$this->view("customers/login", $data);
 			}
 		}
 		
-		/*************** To check if there is no active Transaction *************/
-		public function transactionChecker(){
-			if(!isset($_SESSION["user_info"]) OR !$_SESSION["login"]) {
-				if(!isset($_SESSION["admin_info"]) OR !$_SESSION["admin_login"]){
-					flash("message", "Please login in order to use that feature!", "alert alert-danger");
-					redirectCurrent();
-				}else{
-					$row = $this->db->query("SELECT 1 FROM transactions WHERE customerId = :customerId AND active = 1");
-			
-					// Bind Values
-					//$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-
+		public function logout(){
+			redirect("index");
+			session_destroy();
+			session_start();
+			exit;
+		}
+		
+		public function signup(){
+			$nextID = $this->customerModel->getNextCustomerID()->auto_increment;
+			if($_SERVER["REQUEST_METHOD"] == "POST"){
+				// Sanitize POST Array
+				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				
+				$data = [
+					"action" => "add",
+					"createdBy" => "Customer",
+					"error" => [],
 					
+					// for customer's information
+					"id" => $nextID,
+					"fname" => trim($_POST["fname"]),
+					"lname" => trim($_POST["lname"]),
+					"contactNumber" => trim(preg_replace("/\D+/", "",$_POST["contactNumber"])),
+					"email" => trim($_POST["email"]),
+					"dateOfBirth" => trim($_POST["dateOfBirth"]),
+					"streetAddress" => trim($_POST["streetAddress"]),
+					"city" => trim($_POST["city"]),
+					"province" => trim($_POST["province"]),
+					"postalCode" => trim($_POST["postalCode"]),
+					
+					// for login
+					"username" => trim($_POST["username"]),
+					"password" => trim($_POST["password"]),
+					"confirm_password" => trim($_POST["confirm_password"])
+				];
+				// Validation - customer information
+				if (empty($data["fname"])) {
+					echo "fname";
+					$data["error"]["fname_err"] = "Please enter first name!";
+				}
+				if (empty($data["lname"])) {
+					echo "fname";
+					$data["error"]["lname_err"] = "Please enter last name!";
+				}
+				if (empty($data["contactNumber"])) {
+					echo "fname";
+					$data["error"]["contactNumber_err"] = "Please enter contact number!";
+				}
+				if (empty($data["email"])) {
+					echo "fname";
+					$data["error"]["email_err"] = "Please enter email!";
+				}
+				if (empty($data["dateOfBirth"]) OR $data["dateOfBirth"] == "mm/dd/yyyy") {
+					echo "fname";
+					$data["error"]["dateOfBirth_err"] = "Please enter Date of Birth!";
+				}
+				if (empty($data["streetAddress"])) {
+					echo "fname";
+					$data["error"]["streetAddress_err"] = "Please enter street address!";
+				}
+				if (empty($data["city"])) {
+					echo "fname";
+					$data["error"]["city_err"] = "Please enter city!";
+				}
+				if (empty($data["province"])) {
+					$data["error"]["province_err"] = "Please enter province!";
+				}
+				if (empty($data["postalCode"])) {
+					$data["error"]["postalCode_err"] = "Please enter postal code!";
 				}
 				
-			}else{
-				$this->db->query("SELECT 1 FROM transactions WHERE customerId = :customerId AND active = 1");
-			
-				// Bind Values
-				$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-				$row = $this->db->single();
-			}
-			
-
-			
-			return $row;
-		}
-		
-		public function transactionPendingChecker(){
-			$this->db->query("SELECT 1 FROM transactions WHERE customerId = :customerId AND active = 1 AND status IN ('FOR PAYMENT','FOR SHIPPING')");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$row = $this->db->single();
-			return $row;
-		}
-		
-		public function addToCart($data){
-			$this->db->query("INSERT INTO order_products (productId, product_varId, transactionId, quantity, createdBy, createdOn) VALUE (:productId, :varId, :transactionId, :quantity, :createdBy, now())");
-			
-			// if createdBy is not specified
-			if(!isset($data["createdBy"])){
-				$data["createdBy"] = "System";
-			}
-			
-			// Bind Values
-			$this->db->bind(":productId", $data["productId"]);
-			$this->db->bind(":varId", $data["varId"]);
-			$this->db->bind(":transactionId", $data["transactionid"]);
-			$this->db->bind(":quantity", $data["quantity"]);
-			$this->db->bind(":createdBy", $data["createdBy"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		/**************************** GETTERS ************************/
-		public function getTransaction($id){
-			$this->db->query("SELECT * FROM transactions WHERE id = :id");
-			
-			// Bind Values
-			$this->db->bind(":id", $id);
-			
-			$row = $this->db->single();
-			return $row;
-		}
-		
-		public function getTransactionPending(){
-			$this->db->query("SELECT * FROM transactions WHERE customerId = :customerId AND active = 1 AND status = 'PENDING'");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$row = $this->db->single();
-			return $row;
-		}
-		
-		public function getPendingTransactionForPayment(){
-			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, t.amount, p.method, t.forProductInstallation
-				FROM transactions t
-				LEFT JOIN customers c ON c.id = t.customerId
-				LEFT JOIN payments p ON p.transactionId = t.id
-         		WHERE t.active = 1 AND t.status = 'FOR PAYMENT'");
-			
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		public function getPendingTransactionForShipping(){
-			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress, t.forProductInstallation
-				FROM transactions t
-				LEFT JOIN customers c ON c.id = t.customerId
-				LEFT JOIN delivery d ON d.transactionId = t.id
-         		WHERE t.active = 1 AND t.status = 'For Shipping'");
-			
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		public function getAllPricesPending(){
-			$this->db->query(
-				"SELECT SUM(var.price * op.quantity) as total
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'PENDING'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$row = $this->db->single()->total;
-			return $row;
-		}
-		
-		public function getAllPricesForPayment(){
-			$this->db->query(
-				"SELECT SUM(var.price) as total
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR PAYMENT'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$row = $this->db->single()->total;
-			return $row;
-		}
-		
-		public function getActivePendingOrderProducts(){
-			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, p.product_name, op.quantity, var.stock, var.color, var.size, var.price, var.img
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-                    LEFT JOIN products p ON p.id = op.productId
-					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'PENDING'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		public function getActiveForPaymentOrderProducts(){
-			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, op.id as orderId, t.status, p.product_name, op.quantity, var.id as varId, var.stock, var.color, var.size, var.price, var.img
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-                    LEFT JOIN products p ON p.id = op.productId
-					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR PAYMENT'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		public function getActiveForPaymentOrderProductsById($id){
-			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, op.id as orderId, t.status, p.product_name, op.quantity, var.id as varId, var.stock, var.color, var.size, var.price, var.img
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-                    LEFT JOIN products p ON p.id = op.productId
-					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR PAYMENT'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $id);
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		public function getActiveForShippingOrderProducts(){
-			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, op.id as orderId, t.status, p.product_name, op.quantity, var.stock, var.color, var.size, var.price, var.img
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-                    LEFT JOIN products p ON p.id = op.productId
-					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR SHIPPING'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		public function getCompletedOrderProducts(){
-			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, op.id as orderId, t.status, p.product_name, op.quantity, var.stock, var.color, var.size, var.price, var.img
-       				FROM order_products op
-					LEFT JOIN transactions t ON t.id = op.transactionId
-					LEFT JOIN product_var var ON op.product_varId = var.id
-                    LEFT JOIN products p ON p.id = op.productId
-					WHERE t.customerId = :customerId AND t.active = 0 AND t.status = 'COMPLETED'
-				");
-			
-			// Bind Values
-			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
-			
-			$results = $this->db->resultSet();
-			return $results;
-		}
-		
-		/************* Remove ***************/
-		public function removeOrderProduct($orderId){
-			$this->db->query("DELETE FROM order_products WHERE id = :orderId");
-			
-			// Bind Values
-			$this->db->bind(":orderId", $orderId);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public function cancelTransaction($data){
-			$this->db->query("UPDATE transactions SET active = 0, status = 'CANCELLED', updatedOn = now(), updatedBy = :updatedBy WHERE id = :transactionId");
-			
-			// if updatedBy is not specified
-			if(!isset($data["updatedBy"])){
-				$data["updatedBy"] = "System";
-			}
-			
-			// Bind Values
-			$this->db->bind(":updatedBy", $data["updatedBy"]);
-			$this->db->bind(":transactionId", $data["id"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		/******** CHECKOUT *************/
-		public function checkoutDelivery($data){
-			$this->db->query("INSERT INTO delivery (transactionID, status, method, shippingAddress, createdDate, createdBy) VALUES (:transactionId, :status, :shippingMethod, :shippingAddress, now(), :createdBy)");
-			
-			// if createdBy is not specified
-			if(!isset($data["createdBy"])){
-				$data["createdBy"] = "System";
-			}
-			
-			// Bind Values
-			$this->db->bind(":transactionId", $data["transactionId"]);
-			$this->db->bind(':status', 'PENDING');
-			$this->db->bind(":shippingMethod", $data["shippingMethod"]);
-			$this->db->bind(":shippingAddress", $data["shippingAddress"]);
-			$this->db->bind(":createdBy", $data["createdBy"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public function checkoutPayment($data){
-			$this->db->query("INSERT INTO payments (transactionId, method, status, amount, paidDate, paidBy) VALUE (:transactionId, :paymentMethod, :status, :amount, now(), :paidBy)");
-			
-			// Bind Values
-			$this->db->bind(":transactionId", $data["transactionId"]);
-			$this->db->bind(":paymentMethod", $data["paymentMethod"]);
-			$this->db->bind(":status", 'FOR PAYMENT');
-			$this->db->bind(":paidBy", 'Customer');
-			$this->db->bind(":amount", $data["amount"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public function markTransactionToShipping($data){
-			$this->db->query("UPDATE transactions SET status = 'FOR SHIPPING', updatedOn = now(), updatedBy = :updatedBy WHERE id = :transactionId");
-			
-			// if updatedBy is not specified
-			if(!isset($data["updatedBy"])){
-				$data["updatedBy"] = "System";
-			}
-			
-			// Bind Values
-			$this->db->bind(":updatedBy", $data["updatedBy"]);
-			$this->db->bind(":transactionId", $data["transactionId"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public function markTransactionAsComplete($data){
-			$this->db->query("UPDATE transactions SET status = 'COMPLETED', active = 0, updatedOn = now(), updatedBy = :updatedBy WHERE id = :transactionId");
-			
-			// if updatedBy is not specified
-			if(!isset($data["updatedBy"])){
-				$data["updatedBy"] = "System";
-			}
-			
-			// Bind Values
-			$this->db->bind(":updatedBy", $data["updatedBy"]);
-			$this->db->bind(":transactionId", $data["transactionId"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public function checkoutTransactions($data){
-			$this->db->query("UPDATE transactions SET status = 'FOR PAYMENT', amount = :amount, updatedOn = now(), updatedBy = :updatedBy, forProductInstallation = :productInstallation WHERE id = :transactionId");
-			
-			// if updatedBy is not specified
-			if(!isset($data["updatedBy"])){
-				$data["updatedBy"] = "System";
-			}
-			echo $data["productInstallation"];
-			// Bind Values
-			$this->db->bind(":amount", $data["amount"]);
-			$this->db->bind(":updatedBy", $data["updatedBy"]);
-			$this->db->bind(":transactionId", $data["transactionId"]);
-			$this->db->bind(":productInstallation", $data["productInstallation"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		public function checkoutVarStockUpdate($data){
-			$this->db->query("UPDATE product_var SET stock = :newStock, updatedOn = now(), updatedBy = 'System' WHERE id = :id");
-			
-			// Bind
-			$this->db->bind(":newStock", $data["newStock"]);
-			$this->db->bind(":id", $data["id"]);
-			
-			// Execute
-			if($this->db->execute()){
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		public function getAllForPaymentTransaction(){
-			$testResult = "hello";
-			return $testResult;
-		}
-
-		public function updateInstallation($data){
-			$this->db->query("UPDATE transactions SET productInstallationStart = :startDate, productInstallationEnd = :endDate, updatedOn = now(), updatedBy = 'System' WHERE id = :id");
-			
-			// Bind
-			$this->db->bind(":startDate", $data["startDate"]);
-			$this->db->bind(":endDate", $data["endDate"]);
-			$this->db->bind(":id", $data["id"]);
-			
-			// Execute
-			if($this->db->execute()){
-				$this->db->query("UPDATE delivery SET shippingDate = :startDate WHERE transactionID = :id");
-				$this->db->bind(":startDate", $data["startDate"]);
-				$this->db->bind(":id", $data["id"]);
-				if($this->db->execute()){
-					return true;
-				} else {
-					return false;
+				// Validation - login information
+				if (empty($data["username"])) {
+					$data["error"]["username_err"] = "Please enter username!";
+				} elseif ($this->customerModel->usernameChecker($data["username"])){
+					$data["error"]["username_err"] = "Username already taken";
 				}
+				
+				if (empty($data["password"])) {
+					$data["error"]["password_err"] = "Please enter password!";
+				}
+				if (empty($data["confirm_password"])) {
+					$data["error"]["confirm_password_err"] = "Please enter password!";
+				} elseif ($data["confirm_password"] != $data["password"]){
+					$data["error"]["confirm_password_err"] = "Does not match the password. Please makes sure that it matches";
+				}
+				
+				// Make sure there are no errors
+				if (empty($data["error"])) {
+					// hash password
+					$data["hashed_password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+					
+					// add customer and login data
+					if ($this->customerModel->addCustomer($data) AND $this->customerModel->addCustomerLogin($data)) {
+						flash("message", "You are now registered! Thank you!");
+						redirect("customers/login");
+					} else {
+						die("Something went wrong");
+					}
+				} else {
+					//Load view with errors
+					$this->login();
+				}
+				
 			} else {
-				return false;
+				$data = [
+					"action" => "add",
+					"id" => $nextID,
+					"fname" => "",
+					"lname" => "",
+					"contactNumber" => "",
+					"email" => "",
+					"dateOfBirth" => "",
+					"streetAddress" => "",
+					"city" => "",
+					"province" => "",
+					"postalCode" => "",
+					
+					// for login
+					"username" => "",
+					"password" => "",
+					"confirm_password" => ""
+				];
+				$this->view("customers/form", $data);
 			}
 		}
-	
-		public function getPayMongo(){
-
+		
+		public function updateProfile(){
+			if(!isset($_SESSION["user_info"])) {
+				if(!$_SESSION["login"]){
+					redirect("index");
+				}
+			}
+			
+			if($_SERVER["REQUEST_METHOD"] == "POST"){
+				// Sanitize POST Array
+				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				
+				$data = [
+					"action" => "edit",
+					"updatedBy" => "Customer",
+					"error" => [],
+					
+					// for customer's information
+					"id" => $_SESSION["user_info"]->id,
+					"fname" => trim($_POST["fname"]),
+					"lname" => trim($_POST["lname"]),
+					"contactNumber" => trim(preg_replace("/\D+/", "",$_POST["contactNumber"])),
+					"email" => trim($_POST["email"]),
+					"dateOfBirth" => trim($_POST["dateOfBirth"]),
+					"streetAddress" => trim($_POST["streetAddress"]),
+					"city" => trim($_POST["city"]),
+					"province" => trim($_POST["province"]),
+					"postalCode" => trim($_POST["postalCode"])
+				];
+				
+				// Validation - customer information
+				if (empty($data["fname"])) {
+					$data["error"]["fname_err"] = "Please enter first name!";
+				}
+				if (empty($data["lname"])) {
+					$data["error"]["lname_err"] = "Please enter last name!";
+				}
+				if (empty($data["contactNumber"])) {
+					$data["error"]["contactNumber_err"] = "Please enter contact number!";
+				}
+				if (empty($data["email"])) {
+					$data["error"]["email_err"] = "Please enter email!";
+				}
+				if (empty($data["dateOfBirth"]) OR $data["dateOfBirth"] == "mm/dd/yyyy") {
+					$data["error"]["dateOfBirth_err"] = "Please enter Date of Birth!";
+				}
+				if (empty($data["streetAddress"])) {
+					$data["error"]["streetAddress_err"] = "Please enter street address!";
+				}
+				if (empty($data["city"])) {
+					$data["error"]["city_err"] = "Please enter city!";
+				}
+				if (empty($data["province"])) {
+					$data["error"]["province_err"] = "Please enter province!";
+				}
+				if (empty($data["postalCode"])) {
+					$data["error"]["postalCode_err"] = "Please enter postal code!";
+				}
+				
+				// Make sure there are no errors
+				if (empty($data["error"])) {
+					
+					// update customer data
+					if ($this->customerModel->updateCustomer($data)) {
+						// Refresh _SESSION["user_info"] variable
+						$_SESSION["user_info"] = $this->customerModel->getCustomerById($data["id"]);
+						
+						flash("message", "Thank you for updating your profile!");
+						redirect("customers/profile");
+					} else {
+						die("Something went wrong");
+					}
+				} else {
+					//Load view with errors
+					$this->view("customers/form", $data);
+				}
+				
+			} else {
+				$data = [
+					"action" => "edit",
+					"id" => $_SESSION["user_info"]->id,
+					"fname" => $_SESSION["user_info"]->fname,
+					"lname" => $_SESSION["user_info"]->lname,
+					"contactNumber" => $_SESSION["user_info"]->contactNumber,
+					"email" => $_SESSION["user_info"]->email,
+					"dateOfBirth" => $_SESSION["user_info"]->dateOfBirth,
+					"streetAddress" => $_SESSION["user_info"]->streetAddress,
+					"city" => $_SESSION["user_info"]->city,
+					"province" => $_SESSION["user_info"]->province,
+					"postalCode" => $_SESSION["user_info"]->postalCode
+				];
+				$this->view("customers/form", $data);
+			}
 		}
 	}
 ?>

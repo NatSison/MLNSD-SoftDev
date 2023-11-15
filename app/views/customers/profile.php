@@ -77,15 +77,27 @@
                 <h5 class="d-flex justify-content-center">Please wait for the store to contact you for the payment.</h5>
                 
                 <div class="container d-flex justify-content-center">
-                    <!-- <form class="mx-1" action="<?php //echo URLROOT."/transactions/cancelOrder/".$order->transactionId ?>" method="post" style="display: inline"> -->
                     <form class="mx-1" action="<?php echo URLROOT."/transactions/payMongo/"?>" method="post" style="display: inline">
+                        <!-- logged in user -->
+                        <input name="customerName" type = "hidden" value="<?php echo $data["user_info"]->fname . " " . $data["user_info"]->lname?>">
+                        <input name="customerID" type = "hidden" value="<?php echo $data["user_info"]->id?>">
+                        <input name="contactNumber" type = "hidden" value="<?php echo $data["user_info"]->contactNumber?>">
+                        <input name="email" type = "hidden" value="<?php echo $data["user_info"]->email?>">
+                        <input name="customerAddress" type = "hidden" value="<?php echo $data["user_info"]->streetAddress .", ". $data["user_info"]->city .", ". $data["user_info"]->province .", ". $data["user_info"]->postalCode?>">
+
+                        <!-- product -->
+                        <input name="color" type = "hidden" value="<?php echo $order->color?>">
                         <input name="transactionId" type = "hidden" value="<?php echo $order->transactionId?>">
                         <input name="product_name" type = "hidden" value="<?php echo $order->product_name?>">
                         <input name="quantity" type = "hidden" value="<?php echo $order->quantity?>">
                         <input name="varId" type = "hidden" value="<?php echo $order->varId?>">
                         <input name="price" type = "hidden" value="<?php echo $order->price?>">
+                        <input type="submit" value="Pay" class="btn btn-success">
+                    </form>
+                    <form class="mx-1" action="<?php echo URLROOT."/transactions/cancelOrder/".$order->transactionId ?>" method="post" style="display: inline">
                         <input type="submit" value="Cancel" class="btn btn-danger">
                     </form>
+
                 </div>
 			<?php } ?>
         </div>
