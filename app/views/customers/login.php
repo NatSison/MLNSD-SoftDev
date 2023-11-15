@@ -71,7 +71,7 @@
             <i class="bi bi-telephone"></i>
           </div>
           <div class="input-field">
-            <label for="streedAddress"></label>
+            <label for="streetAddress"></label>
             <input type="text" id="streetAddress" placeholder="Street Address" name="streetAddress" required>
             <i class="bi bi-geo-alt"></i>
           </div>

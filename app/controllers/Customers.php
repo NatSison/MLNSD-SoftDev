@@ -26,7 +26,7 @@
 					"completedOrders" => $completedOrders,
 					"totalPrice" => $totalPrice
 				];
-				
+				var_dump($data);
 				$this->view("customers/profile", $data);
 			}
 		}
@@ -194,7 +194,7 @@
 					}
 				} else {
 					//Load view with errors
-					$this->view("customers/form", $data);
+					$this->login();
 				}
 				
 			} else {

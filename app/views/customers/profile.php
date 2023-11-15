@@ -77,7 +77,13 @@
                 <h5 class="d-flex justify-content-center">Please wait for the store to contact you for the payment.</h5>
                 
                 <div class="container d-flex justify-content-center">
-                    <form class="mx-1" action="<?php echo URLROOT."/transactions/cancelOrder/".$order->transactionId ?>" method="post" style="display: inline">
+                    <!-- <form class="mx-1" action="<?php //echo URLROOT."/transactions/cancelOrder/".$order->transactionId ?>" method="post" style="display: inline"> -->
+                    <form class="mx-1" action="<?php echo URLROOT."/transactions/payMongo/"?>" method="post" style="display: inline">
+                        <input name="transactionId" type = "hidden" value="<?php echo $order->transactionId?>">
+                        <input name="product_name" type = "hidden" value="<?php echo $order->product_name?>">
+                        <input name="quantity" type = "hidden" value="<?php echo $order->quantity?>">
+                        <input name="varId" type = "hidden" value="<?php echo $order->varId?>">
+                        <input name="price" type = "hidden" value="<?php echo $order->price?>">
                         <input type="submit" value="Cancel" class="btn btn-danger">
                     </form>
                 </div>
