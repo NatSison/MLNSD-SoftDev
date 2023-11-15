@@ -136,7 +136,9 @@
                 $this->db->bind("inquiryStatement", $data['inquiryStatement']);
 
                 if($this->db->execute()){
-                    return true;   
+                    var_dump($this->db->execute());
+                    
+                    //return true;   
                 }else {
 				    return false;
                 }

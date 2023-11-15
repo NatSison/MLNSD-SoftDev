@@ -12,6 +12,8 @@
                 "customers" => $customers
             ];
 
+            var_dump($data);
+
             $this->view("admin/customers/index", $data);
         }
 		

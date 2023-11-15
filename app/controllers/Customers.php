@@ -128,27 +128,33 @@
 					"password" => trim($_POST["password"]),
 					"confirm_password" => trim($_POST["confirm_password"])
 				];
-				
 				// Validation - customer information
 				if (empty($data["fname"])) {
+					echo "fname";
 					$data["error"]["fname_err"] = "Please enter first name!";
 				}
 				if (empty($data["lname"])) {
+					echo "fname";
 					$data["error"]["lname_err"] = "Please enter last name!";
 				}
 				if (empty($data["contactNumber"])) {
+					echo "fname";
 					$data["error"]["contactNumber_err"] = "Please enter contact number!";
 				}
 				if (empty($data["email"])) {
+					echo "fname";
 					$data["error"]["email_err"] = "Please enter email!";
 				}
 				if (empty($data["dateOfBirth"]) OR $data["dateOfBirth"] == "mm/dd/yyyy") {
+					echo "fname";
 					$data["error"]["dateOfBirth_err"] = "Please enter Date of Birth!";
 				}
 				if (empty($data["streetAddress"])) {
+					echo "fname";
 					$data["error"]["streetAddress_err"] = "Please enter street address!";
 				}
 				if (empty($data["city"])) {
+					echo "fname";
 					$data["error"]["city_err"] = "Please enter city!";
 				}
 				if (empty($data["province"])) {
