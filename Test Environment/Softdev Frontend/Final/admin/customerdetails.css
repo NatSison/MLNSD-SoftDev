@@ -12,6 +12,22 @@
       padding: 5px 10px;
       text-align: center;
     }
+    .button1 {
+      border-radius: 5px;
+      background: #dc3545;
+      color: white;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      margin-right: 50px;
+    }
+    .button1:hover{
+      background: rgb(239, 59, 59);
+      border-color: #dc3545;
+      color: white;
+      padding: 5px 10px;
+      text-align: center;
+    }
     .btn:hover {
       background-color: #1b203d;
     }
