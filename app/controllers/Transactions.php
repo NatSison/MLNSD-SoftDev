@@ -209,9 +209,9 @@
 			// Set up Guzzle client
 			$client = new \GuzzleHttp\Client();
 			
-			if($this->transactionModel->){
+			// if($this->transactionModel->){
 
-			}
+			// }
 
 			try {
 				// Make a GET request to the PayMongo API to get the checkout session details

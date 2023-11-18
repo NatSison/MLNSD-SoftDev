@@ -26,7 +26,7 @@
 				"completedOrders" => $completedTransactions,
 				"orders" => []
 			];
-			$this->view("test/index", $data);
+			$this->view("admin/dashboard", $data);
 		}
 		
 		public function markAsPaid($id){

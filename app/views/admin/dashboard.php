@@ -1,7 +1,3 @@
-<?php
-    require APPROOT.'/views/templates/adminHeader.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -386,7 +382,10 @@
                 <td><?php echo $details->productInstallationStart;?></td>
 
                 <td>
-                  <button class="btn btn-sm buttons-blue">PROCESS ORDER</button>
+                    <form class="mx-1" action="<?php echo URLROOT."/admin/dashboard/markAsPaid/".$details->transactionId ?>" method="post" style="display: inline">
+                        <input type="submit" value="Process Order" class="btn btn-sm buttons-blue">
+                    </form>
+                  <!-- <button class="btn btn-sm buttons-blue">PROCESS ORDER</button> -->
                 </td>
               </tr>
             <?php endforeach;?>
