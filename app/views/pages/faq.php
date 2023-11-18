@@ -1,5 +1,5 @@
 <?php
-    APPROOT.'/views/templates/header.php';
+    require APPROOT.'/views/templates/header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

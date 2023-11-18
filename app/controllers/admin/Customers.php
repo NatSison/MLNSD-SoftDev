@@ -11,7 +11,7 @@
             $data = [
                 "customers" => $customers
             ];
-            $this->view("admin/customers/index(old)", $data);
+            $this->view("admin/customers/index", $data);
         }
 		
 		public function show($id){

@@ -95,6 +95,7 @@
                     Personal Information:
                 </h3>
                 <div class="form-group mb-3" style="font-family: 'Times New Roman', Times, serif;">
+                <form action="#">
                     
                     <label for="fname">First name: <sup>*</sup></label>
                     <input type="text" name="fname" class="form-control form-control" value="" required="">
