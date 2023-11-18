@@ -205,82 +205,213 @@
 			}
 		}
 
-		public function payMongo(){
-			require_once('..\vendor\autoload.php');
-
+		private function isPayMongoIDPaid() {
+			// Set up Guzzle client
 			$client = new \GuzzleHttp\Client();
-			//var_dump($data);
-			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-				// Get the data from the form
-				// customer information
-				$customerName =$_POST['customerName'];
-				$customerId = $_POST['customerID'];
-				$contactNumber = $_POST['contactNumber'];
-				$email = $_POST['email'];
-				$customerAddress = $_POST['customerAddress'];
-				// product information
-				$transactionId = $_POST['transactionId'];
-				$product_name = $_POST['product_name'];
-				$color = $_POST['color'];
-				$quantity = $_POST['quantity'];
-				$quantity = (int)$quantity;
-				$varId = $_POST['varId'];
-				$price = $_POST['price'];
-				$price = (string)$price;
-				$price = str_replace(".","", $price);
-				$price = (int)$price;
-				
-				try {
-					$response = $client->request('POST', 'https://api.paymongo.com/v1/checkout_sessions', [
-						'json' => [
-							'data' => [
-								'attributes' => [
-									'billing' => [
-										'name' => $customerName,
-										'email' => $email,
-										'phone' => $contactNumber
-									],
-									'send_email_receipt' => false,
-									'show_description' => false,
-									'show_line_items' => true,
-									'description' => 'description',
-									'line_items' => [
-										[
-											'currency' => 'PHP',
-											'amount' => $price,
-											'description' => $color,
-											'name' => $product_name,
-											'quantity' => $quantity,
-										]
-									],
-									'payment_method_types' => ['paymaya']
-								]
-							]
-						],
-						'headers' => [
-							'Content-Type' => 'application/json',
-							'accept' => 'application/json',
-							'authorization' => 'Basic c2tfdGVzdF9Ec2c2Mnd5MUpYcHVYUGRMUmJIOThMSmg6',
-						],
+			
+			if($this->transactionModel->){
 
-						'verify' => false,
-					]);
+			}
 
-					$responseData = json_decode($response->getBody(), true);
-
-					// Check if the checkout URL is present in the response
-					if (isset($responseData['data']['attributes']['checkout_url'])) {
-						$checkoutUrl = $responseData['data']['attributes']['checkout_url'];
-						header('Location:' . $checkoutUrl);
-					} else {
-						echo 'Checkout URL not found in the response.';
-					}
-				} catch (\GuzzleHttp\Exception\RequestException $e) {
-					// Handle exceptions here, log or display an appropriate error message
-					echo 'Error: ' . $e->getMessage();
+			try {
+				// Make a GET request to the PayMongo API to get the checkout session details
+				$response = $client->request('GET', 'https://api.paymongo.com/v1/checkout_sessions/' . $paymongoID, [
+					'headers' => [
+						'accept' => 'application/json',
+						'authorization' => 'Basic c2tfdGVzdF9Ec2c2Mnd5MUpYcHVYUGRMUmJIOThMSmg6',
+					],
+					'verify' => false, // Disable SSL verification (use cautiously)
+				]);
+		
+				// Parse the response
+				$responseData = json_decode($response->getBody(), true);
+		
+				// Check if the payment status is "paid"
+				if (isset($responseData['data']['attributes']['payment']['status']) && $responseData['data']['attributes']['payment']['status'] === 'paid') {
+					return true;
+				} else {
+					return false;
 				}
+			} catch (\GuzzleHttp\Exception\RequestException $e) {
+				// Handle exceptions here, log, or display an appropriate error message
+				echo 'Error: ' . $e->getMessage();
+				return false;
 			}
 		}
+		
+
+		public function payMongo() {
+			require_once('..\vendor\autoload.php');
+		
+			$paymongoID = $this->transactionModel->checkTransactionPayMongo();
+
+			if (!$paymongoID || !$this->isPayMongoIDPaid($paymongoID)) {
+				// PayMongo ID does not exist or is not paid, proceed with your logic
+				$client = new \GuzzleHttp\Client();
+				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+					}try {
+						$customerName = $_POST["customerName"];
+						$contactNumber = $_POST["contactNumber"];
+						$email = $_POST["email"];
+						
+						$transactionId = $_POST["transactionId"];
+						$price = $_POST["price"];
+						$price = (string)$price;
+						$price = str_replace('.', '', $price);
+						$price = (int)$price;
+						$color = $_POST["color"];
+						$product_name = $_POST["product_name"];
+						$quantity = $_POST["quantity"];
+						$quantity = (int)$quantity;
+						$response = $client->request('POST', 'https://api.paymongo.com/v1/checkout_sessions', [
+							'json' => [
+								'data' => [
+									'attributes' => [
+										'billing' => [
+											'name' => $customerName,
+											'email' => $email,
+											'phone' => $contactNumber,
+										],
+										'send_email_receipt' => false,
+										'show_description' => false,
+										'show_line_items' => true,
+										'description' => 'description',
+										'line_items' => [
+											[
+												'currency' => 'PHP',
+												'amount' => $price,
+												'description' => $color,
+												'name' => $product_name,
+												'quantity' => $quantity,
+											],
+										],
+										'payment_method_types' => ['paymaya'],
+									],
+								],
+							],
+							'headers' => [
+								'Content-Type' => 'application/json',
+								'accept' => 'application/json',
+								'authorization' => 'Basic c2tfdGVzdF9Ec2c2Mnd5MUpYcHVYUGRMUmJIOThMSmg6',
+							],
+							'verify' => false,
+						]);
+						$responseData = json_decode($response->getBody(), true);
+						if (isset($responseData['data']['attributes']['checkout_url'])) {
+							$checkoutUrl = $responseData['data']['attributes']['checkout_url'];
+						
+							// Check if PayMongo ID is present in the response
+							if (isset($responseData['data']['id'])) {
+								$paymongoID = $responseData['data']['id'];
+								if($this->transactionModel->updateTransactionPayMongo($transactionId , $paymongoID)) {
+
+								}
+								header('Location:' . $checkoutUrl);
+									exit();
+							} else {
+								echo 'PayMongo ID not found in the response.';
+							}
+						} else {
+							echo 'Checkout URL not found in the response.';
+						}
+					} catch (\GuzzleHttp\Exception\RequestException $e) {
+						// Handle exceptions here, log, or display an appropriate error message
+						echo 'Error: ' . $e->getMessage();
+					}
+					// }else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+					// 	try {
+					// 		$response = $client->request('POST', 'https://api.paymongo.com/v1/checkout_sessions', [
+					// 			'json' => [
+					// 				'data' => [
+					// 					'attributes' => [
+					// 						'billing' => [
+					// 							'name' => $customerName,
+					// 							'email' => $email,
+					// 							'phone' => $contactNumber,
+					// 						],
+					// 						'send_email_receipt' => false,
+					// 						'show_description' => false,
+					// 						'show_line_items' => true,
+					// 						'description' => 'description',
+					// 						'line_items' => [
+					// 							[
+					// 								'currency' => 'PHP',
+					// 								'amount' => $price,
+					// 								'description' => $color,
+					// 								'name' => $product_name,
+					// 								'quantity' => $quantity,
+					// 							],
+					// 						],
+					// 						'payment_method_types' => ['paymaya'],
+					// 					],
+					// 				],
+					// 			],
+					// 			'headers' => [
+					// 				'Content-Type' => 'application/json',
+					// 				'accept' => 'application/json',
+					// 				'authorization' => 'Basic c2tfdGVzdF9Ec2c2Mnd5MUpYcHVYUGRMUmJIOThMSmg6',
+					// 			],
+					// 			'verify' => false,
+					// 		]);
+				
+					// 		$responseData = json_decode($response->getBody(), true);
+				
+					// 		if (isset($responseData['data']['attributes']['checkout_url'])) {
+					// 			$checkoutUrl = $responseData['data']['attributes']['checkout_url'];
+				
+					// 			// Check if PayMongo ID is present in the response
+					// 			if (isset($responseData['data']['id'])) {
+					// 				$paymongoID = $responseData['data']['id'];
+				
+					// 				// Assuming you have a valid $transactionId and $paymongoID
+					// 				if ($this->transactionModel->updateTransactionPayMongo($transactionId, $paymongoID)) {
+					// 					header('Location:' . $checkoutUrl);
+					// 					exit(); // Ensure that no further code is executed after the redirect
+					// 				} else {
+					// 					echo 'Failed to update PayMongoID in the database.';
+					// 				}
+					// 			} else {
+					// 				echo 'PayMongo ID not found in the response.';
+					// 			}
+					// 		} else {
+					// 			echo 'Checkout URL not found in the response.';
+					// 		}
+					// 	} catch (\GuzzleHttp\Exception\RequestException $e) {
+					// 		// Handle exceptions here, log, or display an appropriate error message
+					// 		echo 'Error: ' . $e->getMessage();
+					// 	}
+					// }
+				}
+	}
+		
+
+		public function getPaymentStatus($checkoutSessionId) {
+			require_once('vendor/autoload.php');
+		
+			$client = new \GuzzleHttp\Client();
+		
+			try {
+				$response = $client->request('GET', 'https://api.paymongo.com/v1/checkout_sessions/' . $checkoutSessionId, [
+					'headers' => [
+						'accept' => 'application/json',
+						'authorization' => 'Basic c2tfdGVzdF9Ec2c2Mnd5MUpYcHVYUGRMUmJIOThMSmg6',
+					],
+				]);
+		
+				$responseData = json_decode($response->getBody(), true);
+		
+				// Check if the payment is successful
+				if (isset($responseData['data']['attributes']['payment']['status']) && $responseData['data']['attributes']['payment']['status'] === 'paid') {
+					echo 'Payment Successful!';
+				} else {
+					echo 'Payment Pending or Failed.';
+				}
+			} catch (\GuzzleHttp\Exception\RequestException $e) {
+				// Handle exceptions here, log or display an appropriate error message
+				echo 'Error: ' . $e->getMessage();
+			}
+		}
+		
 
 		public function updateDelivery(){
 			if($_SERVER["REQUEST_METHOD"] == "POST") {

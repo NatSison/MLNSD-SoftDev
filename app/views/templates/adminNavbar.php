@@ -22,6 +22,9 @@
                     <li class="nav-item px-4">
                         <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/reports">Reports</a>
                     </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/inquiries">Inquiries</a>
+                    </li>
             </ul>
                     <div class="d-flex justify-content-end">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-2">

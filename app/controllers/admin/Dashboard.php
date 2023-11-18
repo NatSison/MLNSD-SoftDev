@@ -18,13 +18,15 @@
 		public function index(){
 			$forPaymentTransactions = $this->transactionModel->getPendingTransactionForPayment();
 			$forShippingTransactions = $this->transactionModel->getPendingTransactionForShipping();
+			$completedTransactions = $this->transactionModel->getAllCompletedOrderProducts();
 			
 			$data = [
 				"forPaymentTransactions" => $forPaymentTransactions,
 				"forShippingTransactions" => $forShippingTransactions,
+				"completedOrders" => $completedTransactions,
 				"orders" => []
 			];
-			$this->view("admin/dashboard", $data);
+			$this->view("test/index", $data);
 		}
 		
 		public function markAsPaid($id){

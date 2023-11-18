@@ -175,6 +175,13 @@
                 }
             }
         }
+
+        public function getInquiry(){
+            $this->db->query("SELECT * FROM inquiry_forms");
+
+            $results = $this->db->resultSet();
+            return $results;
+        }
         
 
         // public function addInquiry($data){

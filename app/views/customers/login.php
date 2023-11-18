@@ -34,17 +34,17 @@
           </div>
           <button type="submit">Login</button>
           <div class="signup" style="font-size: 12px; margin-top: 10px;">
-            <span class="text">Don't have an account? <p class="btn-toggle" onclick="toggleForm('signup')">Register here</p></span>
+            <span class="text">Don't have an account? <a href="<?php echo URLROOT . '/customers/signup'?>" class="btn-toggle">Register here</a></span>
           </div>
         </form>
       </div>
-  
+<!--   
       <div class="login-container" style="display: none;">
         <div class="logo">
           <img src="Logo.png" alt="" class="logo-image">
           <h2>Registration</h2>
         </div>
-        <form action="<?php echo URLROOT .'/customers/signup'; ?>" method="post">
+        <form action="<?php //echo URLROOT .'/customers/signup'; ?>" method="post">
           <div class="input-field">
             <label for="registrationUsername"></label>
             <input type="text" id="username" placeholder="Username" name="username" required>
@@ -110,7 +110,7 @@
             <span class="text">Already have an account? <p class="btn-toggle" onclick="toggleForm('login')">Login here</p></span>
           </div>
         </form>
-      </div>
+      </div> -->
 
     <script src="/MLNSD-SoftDev/public/signup.js"></script>
 </body>

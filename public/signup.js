@@ -3,13 +3,7 @@ function toggleForm(formType) {
     const loginForm = document.querySelector('.login-container');
     const registrationForm = document.querySelectorAll('.login-container')[1];
 
-    if (formType === 'signup') {
-        loginForm.style.display = 'none';
-        registrationForm.style.display = 'block';
-    } else {
-        loginForm.style.display = 'block';
-        registrationForm.style.display = 'none';
-    }
+    window.location.href =  "/signup";
 }
 
 // Function to validate the login form

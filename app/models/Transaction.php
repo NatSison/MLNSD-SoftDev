@@ -270,6 +270,19 @@
 			$results = $this->db->resultSet();
 			return $results;
 		}
+
+		public function getAllCompletedOrderProducts(){
+			$this->db->query(
+				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress, t.forProductInstallation, t.productInstallationStart, t.updatedOn
+				FROM transactions t
+				LEFT JOIN customers c ON c.id = t.customerId
+				LEFT JOIN delivery d ON d.transactionId = t.id
+         		WHERE t.active = 0 AND t.status = 'COMPLETED'");
+			
+			
+			$results = $this->db->resultSet();
+			return $results;
+		}
 		
 		/************* Remove ***************/
 		public function removeOrderProduct($orderId){
@@ -453,10 +466,39 @@
 			}
 		}
 
+		public function updateTransactionPaymongo($transactionId, $paymongoID) {
+			$this->db->query("UPDATE transactions SET paymongoID = :paymongoID WHERE id = :transactionId");
+			$this->db->bind(":transactionId", $transactionId);
+			$this->db->bind(":paymongoID", $paymongoID);
 		
+			if ($this->db->execute()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	
-		public function getPayMongo(){
+		public function getPayMongoPaymentStatus(){
+			
+		}
 
+		public function checkTransactionPayMongo() {
+			$this->db->query("SELECT paymongoID FROM transactions WHERE customerId = :customerId AND active = 1");
+			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+		
+			if ($this->db->execute()) {
+				$result = $this->db->single(); // Assuming a method like 'single' to fetch a single row
+		
+				if ($result->paymongoID != null) {
+					return true;
+				} else {
+					// Handle the case where the query executed successfully but no row was found
+					return false;
+				}
+			} else {
+				// Handle the case where the query failed to execute
+				return false;
+			}
 		}
 	}
 ?>

@@ -51,7 +51,7 @@
 						$_SESSION["admin_login"] = "1";
 						$_SESSION["admin_info"] = $this->adminModel->getAdminById($login_result->adminId);
 						flash("message", "You are now logged in!");
-						redirect("admin/products");
+						redirect("admin/dashboard");
 					} else {
 						flash("message", "Something went wrong! Please see support!", "alert alert-danger");
 						redirectCurrent();

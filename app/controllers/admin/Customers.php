@@ -11,10 +11,7 @@
             $data = [
                 "customers" => $customers
             ];
-
-            var_dump($data);
-
-            $this->view("admin/customers/index", $data);
+            $this->view("admin/customers/index(old)", $data);
         }
 		
 		public function show($id){

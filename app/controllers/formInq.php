@@ -19,6 +19,7 @@
 				];
 				if ($this->customerModel->addInquiry($data)) {
 					flash("message", "Updated Installation Schedule");
+					var_dump($data);
 					redirect("");
 				} else {
                     var_dump($data);

@@ -1,175 +1,163 @@
-<?php require APPROOT . '/views/templates/header.php'; ?>
-    <header class="container-fluid col-12 p-0">
-        <h5 class="display-5 px-4 py-2" style="background-color: darkblue; color: White">
-            <?php echo $data['title']; ?>
-        </h5>
-    </header>
-    <style>
-        img {
-            max-width: 50%;
-            height: auto;
-            margin-top: 10px;
-
-        }
-
-        a {
-            text-decoration: none;
-            margin-right: 5px;
-        }
-
-        a:hover {
-            text-decoration: none;
-
-        }
-
-        .fa-envelope {
-            padding: 8px;
-            font-size: 30px;
-        }
-
-        .fa-phone {
-            padding: 8px;
-            font-size: 30px;
-        }
-
-        .fa-facebook {
-
-            padding: 8px;
-            font-size: 30px;
-
-        }
-
-        .bi-messenger {
-            padding: 8px;
-            font-size: 30px;
-
-        }
-
-        .card-header {
-            background-color: gold;
-            font-weight: bold;
-            text-align: center;
-            font-style: italic;
-            font-size: large;
-        }
-
-        .card {
-            border-color: gold;
-            flex-direction: column;
-            width: 18rem;
-            text-align: center;
-
-        }
-
-        .card-text {
-            text-align: center;
-        }
-
-
-
-        p {
-            margin: 20ps;
-            color: white;
-            justify-content: baseline;
-        }
-
-        .section {
-            background-color: darkblue;
-            display: flex;
-            justify-content: space-between;
-            padding: 40px;
-            width: 98%;
-            margin: 10;
-        }
-
-        .section img {
-            height: 250px;
-        }
-    </style>
-    </head>
-    <!------>
-
-    <body>
-    <nav class="navbar navbar-expand-lg bg-warning" ;>
-        <div class="container-fluid ps-3">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="aboutus.css">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b9ca0524a6.js" crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
+   
+</head>
+<body style="background-color: beige;">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Your navigation content here -->
         </div>
     </nav>
-    <div class="container-fluid mt-2 ps-5 justify-content-center" style="border-color: gold;">
-        <div class="section">
-            <div class="text">
-                <h1 style="color: gold;" class="">About Us</h1>
-                <p>
-                    Villamin Wood & Iron Works is a construction supplies company in Pio Felipe, Metro Manila's Taguig
-                    City.
-                    Corporate management is what Villamin Wood & Iron Works does. For the benefit of our devoted
-                    clients, we
-                    provide products of the highest quality that can be customized.
+
+    <!-- About Us Page with Company Description -->
+    <div class="container mt-5" style="background-color: #1a237e; padding: 50px;">
+        <div class="row">
+            <div class="col-md-6 mt-4 text-white">
+                <h1 class="about-title">ABOUT US</h1>
+                <p class="about-text" style="text-align: justify;">
+                    Villamin Wood & Iron Works is a reputable construction supplies company located in the vibrant community of Pio Felipe within the heart of Taguig City, Metro Manila. Our core expertise lies in corporate management within the construction industry. Our commitment to excellence is demonstrated through our unwavering dedication to delivering top-notch products and services.
+    
+                    For the benefit of our cherished clients, we specialize in providing a wide array of high-quality construction supplies that can be tailored to meet your specific needs. Whether it's wood, iron, glass, or aluminum products, our offerings are designed to cater to the most discerning customers. We take pride in our ability to customize and craft solutions that align with your unique requirements, ensuring that your projects are executed with precision and sophistication. At Villamin Wood & Iron Works, your vision becomes our mission, and your satisfaction is our ultimate goal.
                 </p>
-                <a href="https://www.facebook.com/Villamin-Wood-Iron-Glass-Aluminum-Works-479583689050461"
-                   target="_blank" class="fw-bold" style="color: gold;">Visit Us</a>
+                <a class="btn btn-warning mt-3" href="https://www.facebook.com/Villamin-Wood-Iron-Glass-Aluminum-Works-479583689050461" target="_blank">
+                    Visit Us
+                </a>
             </div>
-            <img src="map.png" alt="sigra">
-        </div>
-    </div>
-    <div class="card-group mt-3" style="padding: 40px;">
-        <div class="card">
-            <img src="---" class="card-img-top" alt="manager">
-            <div class="card-body">
-                <h5 class="card-title">STORE MANAGER</h5>
-                <p class="card-text"><small class="text-muted">Manuel Villamin Jr.</small></p>
-            </div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <img src="manager.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">STORE MANAGER</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <div class="col-md-6 mt-4">
+                <img src="images/about us.png" alt="About Us Image" class="img-fluid" style="max-width: 100%; border-radius: 10px;">
             </div>
         </div>
     </div>
+    
+    
+    
+    
 
-    <div class="container-lg">
-        <div class="container-fluid md-3 mt-5" style="text-align: center;">
+    <!-- Mission and Vision section -->
+    <div class="container mt-4" style="background-color: #1a237e; padding: 50px;">
+        <div class="row">
+            <div class="col-md-6 d-flex align-items-stretch">
+                <div class="section3">
+                    <div class="d-flex align-items-center mb-3">
+                        <h1 class="mission-title">Mission</h1>
+                    </div>
+                    <p>
+                        Our mission is to deliver superior quality and innovative solutions in the fields of woodworks, ironworks, glass fabrication, and aluminum works. We aim to exceed customer expectations by providing customized, durable, and aesthetically pleasing products that enhance the functionality and visual appeal of any space. Through our commitment to excellence, we strive to become the preferred choice for clients seeking premium manufacturing services.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-stretch">
+                <div class="section3">
+                    <div class="d-flex align-items-center mb-3">
+                        <h1 class="vision-title">Vision</h1>
+                    </div>
+                    <p>
+                        Our vision is to be a recognized leader in the fields of woodworks, ironworks, glass fabrication, and aluminum works, setting the standard for superior quality and innovation. We aspire to be the go-to choice for clients looking to elevate their spaces with customized, durable, and aesthetically pleasing products that seamlessly blend functionality and visual appeal. By consistently exceeding customer expectations, we aim to be the trusted partner for those seeking premium manufacturing services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
+    <!-- The Company Team -->
+    <div class="container mt-5">
+        <h1 class="fs-4 mt-5 text-center font-weight-bold">
+            MEET OUR <span class="text-warning">TEAM</span>
+        </h1>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card text-left">
+                    <img src="images/Owner.png" alt="Manuel Villamin Jr." class="img-fluid rounded-circle" style="max-width: 200px; max-height: 200px;">
+                    <div class="container mt-3">
+                        <h2 class="team-member-name">Manuel Villamin Jr.</h2>
+                        <p class="team-member-title">Store Owner</p>
+                        <p class="team-member-email">villaminwoodworks@gmail.com</p>
+                        <a href="mailto:villaminwoodworks@gmail.com" class="button mb-3" role="button" style="text-decoration: none;">Contact</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="card text-left">
+                    <img src="images/Manager.jpeg" alt="Fely T. Davales" class="img-fluid rounded-circle" style="max-width: 200px; max-height: 200px;">
+                    <div class="container mt-3">
+                        <h2 class="team-member-name">Fely T. Davales</h2>
+                        <p class="team-member-title">Store Manager</p>
+                        <p class="team-member-email">villaminwoodworks@gmail.com</p>
+                        <a href="mailto:villaminwoodworks@gmail.com" class="button mb-3" role="button" style="text-decoration: none;">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container mt-5">
+        <div class="container" style="text-align: center;">
             <h2>Having a hard time locating our shop? We got you!</h2>
-            <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.5773366197463!2d121.06266201483369!3d14.508936383206272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397cf4ef4353bbb%3A0x2dc5242263659839!2s1632%20MRT%20Ave%2C%20Taguig%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1678604168724!5m2!1sen!2sph"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-            <p class="fst-italic" style="color: black;">G367+F29, MRT Ave, Taguig, 1632 Metro Manila</p>
-            <div class="mt-5 d-flex aligns-items-center justify-content-center">
-                <table>
-                    <tr>
-                        <td>
-                            <h3>OPENING HOURS</h3>
-                            <p style="color: black;">MONDAY 11:00-18:00</p>
-                            <p style="color: black;">TUESDAY 11:00-18:00</p>
-                            <p style="color: black;">WEDNESDAY 11:00-18:00</p>
-                            <p style="color: black;">THURSDAY 11:00-18:00</p>
-                            <p style="color: black;">FRIDAY 11:00-18:00</p>
-                            <p style="color: black;">SATURDAY 11:00-18:00</p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="section" style="justify-content: center;">
-            <div class="container" style="justify-content: c;">
-                <h2 style="color: white;">CONTACT US</h2>
-                <a type="button" href="tel:09292799021" target="_blank">
-                    <i class="fa-solid fa-phone" style="color:white;"></i></a>
-                <a href="https://www.facebook.com/Villamin-Wood-Iron-Glass-Aluminum-Works-479583689050461"
-                   alt="facebook">
-                    <i class="fa-brands fa-facebook" style="color:white;"></i> </a>
-                <a type="button" href="mailto:villaminwoodworks@gmail.com" target="_blank">
-                    <i class="fa-solid fa-envelope" style="color:white;"></i></a>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.5773366197463!2d121.06266201483369!3d14.508936383206272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397cf4ef4353bbb%3A0x2dc5242263659839!2s1632%20MRT%20Ave%2C%20Taguig%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1678604168724!5m2!1sen!2sph" width="100%" height="450" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <p class="fst-italic" style="color: navy;">G367+F29, MRT Ave, Taguig, 1632 Metro Manila</p>
         </div>
     </div>
 
+    <footer>
+        <div class="section2 text-center text-white py-5" style="background-color: navy;">
+            <div class="container section2-content">
+                <div class="row">
+                    <div class="contact col-md-4">
+                        <h2 class="mb-4">Contact Us</h2>
+                        <div class="contact-info">
+                            <a type="button" href="tel:09292799021" target="_blank" class="d-flex align-items-center text-white text-decoration-none">
+                                <i class="bi bi-telephone me-2"></i>
+                                <span>Phone: +63 929 279 9021</span>
+                            </a>
+                            <a href="https://www.facebook.com/Villamin-Wood-Iron-Glass-Aluminum-Works-479583689050461" alt="facebook" class="d-flex align-items-center text-white text-decoration-none mt-2">
+                                <i class="bi bi-facebook me-2"></i>
+                                <span>Visit us on Facebook</span>
+                            </a>
+                            <a type="button" href="mailto:villaminwoodworks@gmail.com" target="_blank" class="d-flex align-items-center text-white text-decoration-none mt-2">
+                                <i class="bi bi-envelope me-2"></i>
+                                <span>Email: villaminwoodworks@gmail.com</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="opening-hours col-md-4">
+                        <div class="hours">
+                            <h3>OPENING HOURS</h3>
+                            <p>MONDAY - SATURDAY: 11:00 AM - 6:00 PM</p>
+                            <p>SUNDAY: Closed</p>
+                        </div>
+                    </div>
+                    <div class="inquiries col-md-4">
+                        <a href="https://example.com">
+                            <h3>For More Inquiries</h3>
+                            <p>Feel free to reach out to us for any further inquiries or assistance.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright text-center py-3" style="font-size: 18px; background-color: black; color: white;">
+            &copy; 2023 Villamin Wood and Iron Works. All Rights Reserved.
+        </div>
+    </footer>
 
-
-
-
-<?php require APPROOT . '/views/templates/footer.php'; ?>
+    <script src="https://kit.fontawesome.com/b9ca0524a6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+</body>
+</html>

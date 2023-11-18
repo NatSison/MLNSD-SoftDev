@@ -92,7 +92,9 @@
                         <input name="quantity" type = "hidden" value="<?php echo $order->quantity?>">
                         <input name="varId" type = "hidden" value="<?php echo $order->varId?>">
                         <input name="price" type = "hidden" value="<?php echo $order->price?>">
-                        <input type="submit" value="Pay" class="btn btn-success">
+                        <?php
+                            echo "<input type='submit' value='Pay' class='btn btn-success'>";
+                        ?>
                     </form>
                     <form class="mx-1" action="<?php echo URLROOT."/transactions/cancelOrder/".$order->transactionId ?>" method="post" style="display: inline">
                         <input type="submit" value="Cancel" class="btn btn-danger">
