@@ -19,14 +19,13 @@
 				];
 				if ($this->customerModel->addInquiry($data)) {
 					flash("message", "Updated Installation Schedule");
-					var_dump($data);
 					redirect("");
 				} else {
                     var_dump($data);
 					die("Something went wrong");
 				}
 			}else{
-				$this->view("customers/form");
+				$this->view("pages/forminq");
 			}
 		}
 	}

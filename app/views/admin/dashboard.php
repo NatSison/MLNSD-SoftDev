@@ -1,5 +1,5 @@
 <?php
-    require APPROOT.'/views/templates/header.php';
+    require APPROOT.'/views/templates/adminHeader.php';
 ?>
 
 <!DOCTYPE html>
@@ -461,7 +461,7 @@
                 <td><?php echo $details->name; ?></td>
                 <td><?php echo $details->transactionId; ?></td>
                 <td><?php echo $details->customerId; ?></td>
-                <td><?php echo $details->amount; ?></td>
+                <td><?php echo $details->shippingAddress; ?></td>
                 <td><?php echo $details->status; ?></td>
                 <td><?php echo $details->method; ?></td>
                 <td><?php echo $details->forProductInstallation;?></td>
