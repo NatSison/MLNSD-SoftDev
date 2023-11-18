@@ -155,26 +155,48 @@ section{
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    width: 250px;
-    max-width: 100rem;
+    width: 100%;
+    max-width: 300px;
     margin: 0 auto;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.5);
-}  
+    transition: transform 0.3s ease-in-out;
+}
+
 .card2 .image {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 200px;
+    overflow: hidden;
 }
+
 .card2 .image img {
-    max-height: 100%;
     max-width: 100%;
-    border: 1px solid #ddd;
+    max-height: 100%;
+    object-fit: cover;
     border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
 }
+
 .card2:hover {
     transform: scale(1.05);
 }
+
+.view-details-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.view-details-button:hover {
+    background-color: #0056b3;
+}
+
 /* STYLE FOR ABOUT US */
 .about {
     display: grid;
