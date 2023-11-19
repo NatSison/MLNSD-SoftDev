@@ -1,3 +1,6 @@
+<?php
+  require APPROOT . "/views/templates/adminHeader.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

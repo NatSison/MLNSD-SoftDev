@@ -12,7 +12,7 @@
 		public function	profile() {
 			$pendingPaymentList = $this->transactionModel->getActivePendingPaymentOrders();
 			$pendingForShippingList = $this->transactionModel->getActiveForShippingOrders();
-			$customerCompletedOrderList = $this->transactionModel->getAllCompletedOrderProducts();
+			$customerCompletedOrderList = $this->transactionModel->getCompletedOrderProducts();
 			$customerActiveTransactionId = $this->transactionModel->getActiveTransactionId();
 			$totalPrice = $this->transactionModel->getAllPricesPending();
 
