@@ -256,11 +256,12 @@
 		
 		public function getCompletedOrderProducts(){
 			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, op.id as orderId, t.status, p.product_name, op.quantity, var.stock, var.color, var.size, var.price, var.img
+				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, t.amount, p.product_name, p.category, p.details, op.quantity, var.stock, var.color, var.size, var.price, var.img, d.shippingFee
        				FROM order_products op
 					LEFT JOIN transactions t ON t.id = op.transactionId
 					LEFT JOIN product_var var ON op.product_varId = var.id
                     LEFT JOIN products p ON p.id = op.productId
+					LEFT JOIN delivery d ON d.transactionId = t.id
 					WHERE t.customerId = :customerId AND t.active = 0 AND t.status = 'COMPLETED'
 				");
 			
@@ -273,12 +274,64 @@
 
 		public function getAllCompletedOrderProducts(){
 			$this->db->query(
-				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, d.method, d.shippingAddress, t.forProductInstallation, t.productInstallationStart, t.updatedOn
+				"SELECT CONCAT(c.fname,' ',c.lname) as name, t.id as transactionId, t.customerId, t.status, t.amount, d.method, d.shippingAddress, t.forProductInstallation, t.productInstallationStart, t.updatedOn, d.shippingFee
 				FROM transactions t
 				LEFT JOIN customers c ON c.id = t.customerId
 				LEFT JOIN delivery d ON d.transactionId = t.id
-         		WHERE t.active = 0 AND t.status = 'COMPLETED'");
+         		WHERE t.active = 0 AND t.status = 'COMPLETED' AND t.customerId = :customerId");
 			
+			// Bind Values
+			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+			
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getActivePendingPaymentOrders(){
+			$this->db->query(
+				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, t.amount, p.product_name, p.category, p.details, op.quantity, var.stock, var.color, var.size, var.price, var.img, d.shippingFee
+       				FROM order_products op
+					LEFT JOIN transactions t ON t.id = op.transactionId
+					LEFT JOIN product_var var ON op.product_varId = var.id
+                    LEFT JOIN products p ON p.id = op.productId
+					LEFT JOIN delivery d ON d.transactionId = t.id 
+					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR PAYMENT'
+				");
+			
+			// Bind Values
+			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+			
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getActiveForShippingOrders(){
+			$this->db->query(
+				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, t.amount, p.product_name, p.category, p.details, op.quantity, var.stock, var.color, var.size, var.price, var.img, d.shippingFee
+       				FROM order_products op
+					LEFT JOIN transactions t ON t.id = op.transactionId
+					LEFT JOIN product_var var ON op.product_varId = var.id
+                    LEFT JOIN products p ON p.id = op.productId
+					LEFT JOIN delivery d ON d.transactionId = t.id 
+					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR SHIPPING'
+				");
+			
+			// Bind Values
+			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
+			
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getActiveTransactionId(){
+			$this->db->query(
+				"SELECT id as transactionId
+       				FROM transactions t
+					WHERE t.customerId = :customerId AND t.active = 1
+				");
+			
+			// Bind Values
+			$this->db->bind(":customerId", $_SESSION["user_info"]->id);
 			
 			$results = $this->db->resultSet();
 			return $results;

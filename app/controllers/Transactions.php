@@ -307,7 +307,7 @@
 
 								}
 								header('Location:' . $checkoutUrl);
-									exit();
+								exit();
 							} else {
 								echo 'PayMongo ID not found in the response.';
 							}

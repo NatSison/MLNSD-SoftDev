@@ -312,7 +312,7 @@
     </style>
   </head>
 
-  <body>
+  <body style="background-color: beige;">
     <!-- CONTENT CARDS FOR CUSTOMERS, TOTAL ORDERS AND SALES -->
     <!-- <div class="container" id="content-container">
         <div class="content" id="dashboard"> -->
