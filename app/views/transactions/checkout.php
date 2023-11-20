@@ -69,9 +69,9 @@
                 <label for="paymentMethod">Preferred payment method: <sup>*</sup></label>
                 <select class="form-select" name="paymentMethod">
                     <option value="cash">Cash on Delivery</option>
-                    <option value="Card">Card</option>
-					<option value="GCash">GCash</option>
-					<option value="Maya">Maya</option>
+                    <option value="card">Card</option>
+					<option value="gcash">GCash</option>
+					<option value="paymaya">Maya</option>
                 </select>
 
 				<label for="productInstallation">Avail for Product Installation: <sup>*</sup></label>

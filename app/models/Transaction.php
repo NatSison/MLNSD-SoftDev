@@ -188,7 +188,7 @@
 		
 		public function getActivePendingOrderProducts(){
 			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, p.product_name, op.quantity, var.stock, var.color, var.size, var.price, var.img
+				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, p.product_name, p.category, p.details, op.quantity, var.stock, var.color, var.size, var.price, var.img
        				FROM order_products op
 					LEFT JOIN transactions t ON t.id = op.transactionId
 					LEFT JOIN product_var var ON op.product_varId = var.id
@@ -286,12 +286,13 @@
 
 		public function getActivePendingPaymentOrders(){
 			$this->db->query(
-				"SELECT t.id as transactionId, p.id as productId, var.id as varId, op.id as orderId, t.status, t.amount, p.product_name, p.category, p.details, op.quantity, var.stock, var.color, var.size, var.price, var.img, d.shippingFee
+				"SELECT t.id as transactionId, pro.id as productId, var.id as varId, op.id as orderId, t.status, t.amount, pro.product_name, pro.category, pro.details, op.quantity, var.stock, var.color, var.size, var.price, var.img, d.shippingFee, pay.method
        				FROM order_products op
 					LEFT JOIN transactions t ON t.id = op.transactionId
 					LEFT JOIN product_var var ON op.product_varId = var.id
-                    LEFT JOIN products p ON p.id = op.productId
+                    LEFT JOIN products pro ON pro.id = op.productId
 					LEFT JOIN delivery d ON d.transactionId = t.id 
+					LEFT JOIN payments pay ON pay.transactionId = t.id 
 					WHERE t.customerId = :customerId AND t.active = 1 AND t.status = 'FOR PAYMENT'
 				");
 			

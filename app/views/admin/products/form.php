@@ -37,7 +37,7 @@
                 <h1>
 		              <?php echo ($data["action"]=="add") ? "Add Product" : "Update Product Information"  ?>
 	              </h1>
-                <form action="http://localhost/MLNSD-SoftDev/admin/login/signup" method="post"><form action="<?php echo URLROOT."/admin/products/".($data["action"]=="edit" ? "edit/".$data["id"] : "add"); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo URLROOT."/admin/products/".($data["action"]=="edit" ? "edit/".$data["id"] : "add"); ?>" method="post" enctype="multipart/form-data">
                     <div class="row mb-3" style="font-family: 'Times New Roman', Times, serif;">
                         <div class="col-md-6">
                             <label for="id" class="form-label">Product ID:<sup class="text-danger">*</sup></label>

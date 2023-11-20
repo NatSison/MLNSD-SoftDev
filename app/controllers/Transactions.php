@@ -155,6 +155,72 @@
 			}
 		}
 		
+		public function updateQuanity(){
+			$shoppingCart = $this->transactionModel->getActivePendingOrderProducts();
+			$transaction = $this->transactionModel->getTransactionPending();
+			$totalPrice = $this->transactionModel->getAllPricesPending();
+			
+			if($_SERVER["REQUEST_METHOD"] == "POST") {
+				// Sanitize POST Array
+				$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				
+				$data = [
+					//default
+					"totalPrice" => $totalPrice,
+					"shoppingCart" => $shoppingCart,
+					"custId" => $_SESSION["user_info"]->id,
+					
+					"error" => [],
+					"createdBy" => "Customer",
+					"updatedBy" => "Customer",
+					"shippingAddress" => $_POST["shippingAddress"],
+					"shippingMethod" => $_POST["shippingMethod"],
+					"paymentMethod" => $_POST["paymentMethod"],
+					"amount" => $totalPrice,
+					"transactionId" => $transaction->id,
+					"productInstallation" => $_POST["productInstallation"]
+				];
+				
+				//validation
+				if (empty($data["shippingAddress"])) {
+					$data["error"]["shippingAddress_err"] = "Please enter shipping address!";
+				}
+				
+				// for stocks checking
+				foreach ($shoppingCart as $order){
+					if($order->quantity > $order->stock){
+						flash("message", "Order cannot proceed as a product is short on stock", "alert alert-danger");
+						redirectCurrent();
+					}
+				}
+				
+				// Make sure there are no errors
+				if(empty($data["error"])){
+					// proceed with checkout
+					if($this->transactionModel->checkoutDelivery($data) && $this->transactionModel->checkoutPayment($data) && $this->transactionModel->checkoutTransactions($data)){
+						// update stocks
+						foreach ($shoppingCart as $order){
+							$newStock = $order->stock - $order->quantity;
+
+							$stockData = [
+								"id" => $order->varId,
+								"newStock" => $newStock
+							];
+							$this->transactionModel->checkoutVarStockUpdate($stockData);
+						}
+						flash("message", "Thank you! Your order is now submitted!");
+						redirect("customers/profile");
+					} else {
+						die("Something went wrong");
+					}
+				} else {
+					//Load view with errors
+					$this->view("transactions/checkout", $data);
+				}
+			}
+		}
+			
+
 		public function removeFromCart($orderId){
 			if($_SERVER["REQUEST_METHOD"] == "POST") {
 				// Sanitize POST Array
@@ -262,6 +328,7 @@
 						$color = $_POST["color"];
 						$product_name = $_POST["product_name"];
 						$quantity = $_POST["quantity"];
+						$paymentMethod = $_POST["paymentMethod"];
 						$quantity = (int)$quantity;
 						$response = $client->request('POST', 'https://api.paymongo.com/v1/checkout_sessions', [
 							'json' => [
@@ -285,7 +352,7 @@
 												'quantity' => $quantity,
 											],
 										],
-										'payment_method_types' => ['paymaya'],
+										'payment_method_types' => [$paymentMethod],
 									],
 								],
 							],
@@ -381,6 +448,8 @@
 					// 		echo 'Error: ' . $e->getMessage();
 					// 	}
 					// }
+
+					var_dump($paymentMethod);
 				}
 	}
 		

@@ -7,9 +7,19 @@
 
         public function index(){
 			$featuredProducts = $this->productModel->getFeaturedProducts();
+            $doorCategorizedFeaturedProducts = $this->productModel->getDoorCategorizedFeaturedProducts();
+            $screenCategorizedFeaturedProducts = $this->productModel->getScreenCategorizedFeaturedProducts();
+            $windowCategorizedFeaturedProducts = $this->productModel->getWindowCategorizedFeaturedProducts();
+            $knobCategorizedFeaturedProducts = $this->productModel->getKnobCategorizedFeaturedProducts();
+            $otherCategorizedFeaturedProducts = $this->productModel->getOtherCategorizedFeaturedProducts();
             $data = [
                 "title" => "Featured Products",
-				"featuredProducts" => $featuredProducts
+				"featuredProducts" => $featuredProducts,
+                "doorCategorizedFeaturedProducts" => $doorCategorizedFeaturedProducts,
+                "screenCategorizedFeaturedProducts" => $screenCategorizedFeaturedProducts,
+                "windowCategorizedFeaturedProducts" => $windowCategorizedFeaturedProducts,
+                "knobCategorizedFeaturedProducts" => $knobCategorizedFeaturedProducts,
+                "otherCategorizedFeaturedProducts" => $otherCategorizedFeaturedProducts,
             ];
             $this->view("pages/index", $data);
         }

@@ -26,21 +26,13 @@
 		}
 		
 		public function index(){
-			$pendingPaymentList = $this->transactionModel->getActivePendingPaymentOrders();
-			$pendingForShippingList = $this->transactionModel->getActiveForShippingOrders();
-			$customerCompletedOrderList = $this->transactionModel->getAllCompletedOrderProducts();
-			$customerActiveTransactionId = $this->transactionModel->getActiveTransactionId();
+			$shoppingCart = $this->transactionModel->getActivePendingOrderProducts();
 			$totalPrice = $this->transactionModel->getAllPricesPending();
-
 			$data = [
-				"pendingPaymentList" => $pendingPaymentList,
-				"pendingForShippingList" => $pendingForShippingList,
-				"completedOrderList" => $customerCompletedOrderList,
-				"user_info" => $_SESSION["user_info"],
-				"totalPrice" => $totalPrice,
-				"rowCounter" => 1,
-				"transactionId" => (!empty($customerActiveTransactionId) && isset($customerActiveTransactionId[0]->transactionId)) ? $customerActiveTransactionId[0]->transactionId : null,
+				"shoppingCart" => $shoppingCart,
+				"totalPrice" => $totalPrice
 			];
+			
 			$this->view("test/index", $data);
 			
 		}

@@ -14,14 +14,17 @@
                         <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item px-4">
+                        <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/dashboard/orders">Orders</a>
+                    </li>
+                    <li class="nav-item px-4">
                         <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/customers">Customers</a>
                     </li>
                     <li class="nav-item px-4">
                         <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/products">Products</a>
                     </li>
-                    <li class="nav-item px-4">
+                    <!-- <li class="nav-item px-4">
                         <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/reports">Reports</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item px-4">
                         <a class="nav-link text-white" href="<?php echo URLROOT; ?>/admin/inquiries">Inquiries</a>
                     </li>

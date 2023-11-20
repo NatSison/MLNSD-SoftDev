@@ -116,6 +116,61 @@
 			$results = $this->db->resultSet();
 			return $results;
 		}
+
+		public function getDoorCategorizedFeaturedProducts(){
+			$this->db->query(
+				"SELECT v.id as varId, p.id as productId, v.color, v.size, v.stock, v.price, p.img as productImg, p.category, p.details, p.product_name, v.img as varImg
+				FROM product_var v
+				LEFT JOIN products p ON v.productId = p.id
+				WHERE featured = 1 AND (p.category = 'Panel Door' OR p.category = 'Flush Door')");
+		
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getScreenCategorizedFeaturedProducts(){
+			$this->db->query(
+				"SELECT v.id as varId, p.id as productId, v.color, v.size, v.stock, v.price, p.img as productImg, p.category, p.details, p.product_name, v.img as varImg
+				FROM product_var v
+				LEFT JOIN products p ON v.productId = p.id
+				WHERE featured = 1 AND (p.category = 'Screen')");
+		
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getKnobCategorizedFeaturedProducts(){
+			$this->db->query(
+				"SELECT v.id as varId, p.id as productId, v.color, v.size, v.stock, v.price, p.img as productImg, p.category, p.details, p.product_name, v.img as varImg
+				FROM product_var v
+				LEFT JOIN products p ON v.productId = p.id
+				WHERE featured = 1 AND (p.category = 'Knob')");
+		
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getWindowCategorizedFeaturedProducts(){
+			$this->db->query(
+				"SELECT v.id as varId, p.id as productId, v.color, v.size, v.stock, v.price, p.img as productImg, p.category, p.details, p.product_name, v.img as varImg
+				FROM product_var v
+				LEFT JOIN products p ON v.productId = p.id
+				WHERE featured = 1 AND (p.category = 'Window')");
+		
+			$results = $this->db->resultSet();
+			return $results;
+		}
+
+		public function getOtherCategorizedFeaturedProducts(){
+			$this->db->query(
+				"SELECT v.id as varId, p.id as productId, v.color, v.size, v.stock, v.price, p.img as productImg, p.category, p.details, p.product_name, v.img as varImg
+				FROM product_var v
+				LEFT JOIN products p ON v.productId = p.id
+				WHERE featured = 1 AND (p.category != 'Panel Door' OR p.category != 'Flush Door' OR p.category != 'Screen' OR p.category != 'Knob' OR p.category != 'Window')");
+		
+			$results = $this->db->resultSet();
+			return $results;
+		}
 		
 		public function getVarProductById($id){
 			$this->db->query("SELECT var.id as id, p.product_name as product_name, productId, color, size, p.img as img, stock, price, var.img as varImg, featured

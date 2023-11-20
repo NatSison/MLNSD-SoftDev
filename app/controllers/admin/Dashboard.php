@@ -8,6 +8,7 @@
 				$this->customerModel = $this->model("Customer");
 				$this->productModel = $this->model("Product");
 				$this->transactionModel = $this->model("Transaction");
+				$this->reportModel = $this->model("Report");
 				
 				if(!$this->transactionModel->transactionChecker()){
 					$this->transactionModel->createTransaction();
@@ -16,6 +17,37 @@
 		}
 		
 		public function index(){
+			$title = $this->reportModel->getPageTitle();
+            $getPendingTransactions = $this->reportModel->getAllPendingTransaction();
+            $getForPaymentTransactions = $this->reportModel->getAllForPaymentTransaction();
+            $getForShippingTransactions = $this->reportModel->getAllForShippingTransaction();
+            $getCompletedTransactions = $this->reportModel->getAllCompletedTransaction();
+            $getTotalCustomers = $this->reportModel->getTotalCustomers();
+            $getAllProductStocks = $this->reportModel->getAllProductStocks();
+            $data = [
+                "getPendingTransactions" => $getPendingTransactions,
+                "getForPaymentTransactions" => $getForPaymentTransactions,
+                "getForShippingTransactions" => $getForShippingTransactions,
+                "getCompletedTransactions" => $getCompletedTransactions,
+                "getTotalCustomers" => $getTotalCustomers,
+                "getAllProductStocks" => $getAllProductStocks,
+                "title" => $title
+            ];
+            $this->view("admin/report", $data);
+			// $forPaymentTransactions = $this->transactionModel->getPendingTransactionForPayment();
+			// $forShippingTransactions = $this->transactionModel->getPendingTransactionForShipping();
+			// $completedTransactions = $this->transactionModel->getAllCompletedOrderProducts();
+			
+			// $data = [
+			// 	"forPaymentTransactions" => $forPaymentTransactions,
+			// 	"forShippingTransactions" => $forShippingTransactions,
+			// 	"completedOrders" => $completedTransactions,
+			// 	"orders" => []
+			// ];
+			// $this->view("admin/report", $data);
+		}
+
+		public function orders(){
 			$forPaymentTransactions = $this->transactionModel->getPendingTransactionForPayment();
 			$forShippingTransactions = $this->transactionModel->getPendingTransactionForShipping();
 			$completedTransactions = $this->transactionModel->getAllCompletedOrderProducts();
@@ -26,7 +58,7 @@
 				"completedOrders" => $completedTransactions,
 				"orders" => []
 			];
-			$this->view("admin/dashboard", $data);
+			$this->view("admin/orders", $data);
 		}
 		
 		public function markAsPaid($id){

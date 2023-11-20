@@ -60,7 +60,7 @@
 
 		public function getAllCompletedTransaction(){
             $paymentStatus = "COMPLETED";
-			$this->db->query("SELECT * FROM transactions WHERE status = :paymentStatus AND active = 1");
+			$this->db->query("SELECT * FROM transactions WHERE status = :paymentStatus");
 
 			// Bind Values
 			$this->db->bind(":paymentStatus", $paymentStatus);
