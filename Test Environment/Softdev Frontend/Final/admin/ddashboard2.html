@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .card1 {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease-in-out;
+      }
+      .card1:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+      }
+      .card-header {
+        background-color: navy;
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 13px;
+        padding: 10px;
+        text-align: center;
+      }
+      .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+      .card-title {
+        font-size: 50px;
+        color: goldenrod;
+        margin: 0;
+      }
+      .icon {
+        font-size: 40px;
+        margin-top: 15px;
+      }
+      .card-footer {
+        background-color: #f9f9f9;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" >
+      <div class="col-md-3" >
+          <div class="card1"id="pending-orders-card" onclick="toggleCard('pending-orders-card')">
+          <div class="card1">
+              <div class="card-header" style="background-color: navy; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; font-size: 13px ;">
+                 TOTAL PENDING ORDERS
+              </div>
+              <div class="card-body" style="display: flex; justify-content: space-between;">
+                  <h5 class="card-title" style="font-size: 50px; color: goldenrod;">2341</h5>
+                  <i class="bi bi-cart-fill" style="font-size: 40px; margin-top: 15px;"></i>
+              </div>
+              <div class="card-footer"></div>
+          </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="card1" id="pending-orders-card" onclick="toggleCard('pending-orders-shipping')">
+          <div class="card1">
+              <div class="card-header" style="background-color: navy; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; font-size: 13px ;">
+               TOTAL PENDING FOR SHIPPING
+              </div>
+              <div class="card-body" style="display: flex; justify-content: space-between;">
+                  <h5 class="card-title" style="font-size: 50px; color: goldenrod;">2341</h5>
+                  <i class="bi-truck-front-fill" style="font-size: 40px; margin-top: 15px;"></i>
+              </div>
+              <div class="card-footer"></div>
+          </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="card1" id="pending-orders-card" onclick="toggleCard('completed-orders')">
+          <div class="card1">
+              <div class="card-header" style="background-color: navy; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; font-size: 13px ;">
+                TOTAL COMPLETED ORDERS
+              </div>
+              <div class="card-body" style="display: flex; justify-content: space-between;">
+                  <h5 class="card-title" style="font-size: 50px; color: goldenrod;">2341</h5>
+                  <i class="bi bi-check-circle-fill" style="font-size: 40px; margin-top: 15px;"></i>
+              </div>
+              <div class="card-footer"></div>
+          </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="card1" id="pending-orders-card" onclick="toggleCard('total-users')">
+          <div class="card1">
+              <div class="card-header" style="background-color: navy; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white; font-size: 13px ;">
+                TOTAL USERS
+              </div>
+              <div class="card-body" style="display: flex; justify-content: space-between;">
+                  <h5 class="card-title" style="font-size: 50px; color: goldenrod;">2341</h5>
+                  <i class="bi bi-people-fill" style="font-size: 40px; margin-top: 15px;"></i>
+              </div>
+              <div class="card-footer"></div>
+          </div>
+          </div>
+      </div>
+    </div>
+ 
+    <!-- DO NOT MODIFY -->
+    <div class="card1 p-3" style="margin-top: 100px;">
+    <table class="table table-bordered table-hover" id="example" style="margin-top: 250px; font-family:'Times New Roman', Times, serif; ">
+      <thead class="table-secondary">
+        <tr class="text-center">
+          <th>Name</th>
+          <th>Order No.</th>
+          <th>Amount</th>
+          <th>Purchase Date</th>
+          <th>Option</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr>
+          <td>John Doe</td>
+          <td>#210</td>
+          <td>Php 3,500.00</td>
+          <td>11-20-2023</td>
+          <td>
+            <button class="btn" style="background-color: navy; color: white">
+              View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>#211</td>
+          <td>Php 2,800.00</td>
+          <td>11-22-2023</td>
+          <td>
+            <button class="btn" style="background-color: navy; color: white">
+              View
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Michael Johnson</td>
+          <td>#212</td>
+          <td>Php 4,200.00</td>
+          <td>11-25-2023</td>
+          <td>
+            <button class="btn" style="background-color: navy; color: white">
+              View
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Susan Williams</td>
+          <td>#213</td>
+          <td>Php 3,000.00</td>
+          <td>11-28-2023</td>
+          <td>
+            <button class="btn" style="background-color: navy; color: white">
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <!-- DO NOT MODIFY -->
+  </body>
+
+  <script src=" https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.colVis.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var table = $("#example").DataTable({
+        responsive: true,
+        order: [[1, "asc"]],
+        buttons: [
+          {
+            extend: "excel",
+            className: "btn btn-warning mt-3 me-1 border border-primary",
+            text: '<i class="bi bi-download"></i> Download as Excel',
+            filename: "VILLAMIN WOOD AND IRON WORKS",
+            title: "VILLAMIN WOOD AND IRON WORKS",
+            exportOptions: {
+              columns: [0, 1, 2, 3],
+            },
+          },
+          {
+            extend: "pdf",
+            className: "btn btn-warning mt-3 border border-primary",
+            text: '<i class="bi bi-download"></i> Download as PDF',
+            filename: "VILLAMIN WOOD AND IRON WORKS",
+            title: "VILLAMIN WOOD AND IRON WORKS",
+            exportOptions: {
+              columns: [0, 1, 2, 3],
+            },
+          },
+        ],
+      });
+
+      table.buttons().container().appendTo("#example_wrapper .col-md-6:eq(0)");
+    });
+  </script>
+</html>
