@@ -183,7 +183,7 @@
                 <td><i class="bi bi-circle-fill text-success" ></i></td>
                 <td><?php $details->existingCustomerId?></td>
                 <!-- <td>NAME</td> -->
-                <td><a href="mailto:<?php $details->email?>">dale@example.com</a></td>
+                <td><a href="mailto:<?php $details->email;?>"><?php echo $details->email?></a></td>
                 <td>09123456789</td>
                 <td>11-19-2023</td>
                 <td>
@@ -199,72 +199,13 @@
                       overflow-y: hidden;
                       resize: none;
                     "
-                  >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac justo vel libero consectetur vehicula. Sed bibendum urna vel metus facilisis, in dapibus dui varius. Vestibulum vel ipsum id elit accumsan scelerisque. Proin eu dui ac odio sollicitudin tempor.
-                </textarea
+                  ><?php echo $details->inquiryStatement?></textarea
                   >
                 </td>
-                <td><button class="btn btn-primary"> Process </button></td>
-                <td style="display: none;">0</td>
-              </tr>
-              <tr>
-                <td><i class="bi bi-circle-fill text-success"></i></td>
-                <td>1234</td>
-                <td>Alice A.</td>
-                <td>
-                  <a href="mailto:alice@example.com">alice@example.com</a>
-                </td>
-                <td>09876543210</td>
-                <td>11-20-2023</td>
-                <td>
-                  <textarea
-                    class="form-control"
-                    id="responsiveTextarea"
-                    readonly
-                    style="
-                      background-color: white;
-                      border-color: white;
-                      width: 100%;
-                      max-width: 100%;
-                      overflow-y: hidden;
-                      resize: none;
-                    "
-                  >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac justo vel libero consectetur vehicula. Sed bibendum urna vel metus facilisis, in dapibus dui varius. Vestibulum vel ipsum id elit accumsan scelerisque. Proin eu dui ac odio sollicitudin tempor.
-                  </textarea>
-                </td>
-                 <td><button class="btn btn-primary"> Process </button></td>
+                <!-- <td><button class="btn btn-primary"> Process </button></td> -->
                 <td style="display: none;">0</td>
               </tr>
               <?php endforeach;?>
-
-              <tr>
-                <td><i class="bi bi-circle-fill text-danger"></i></td>
-                <td>5678</td>
-                <td>Bob B.</td>
-                <td><a href="mailto:bob@example.com">bob@example.com</a></td>
-                <td>07654321098</td>
-                <td>11-25-2023</td>
-                <td>
-                  <textarea
-                    class="form-control"
-                    id="responsiveTextarea"
-                    readonly
-                    style="
-                      background-color: white;
-                      border-color: white;
-                      width: 100%;
-                      max-width: 100%;
-                      overflow-y: hidden;
-                      resize: none;
-                    "
-                  >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac justo vel libero consectetur vehicula. Sed bibendum urna vel metus facilisis, in dapibus dui varius. Vestibulum vel ipsum id elit accumsan scelerisque. Proin eu dui ac odio sollicitudin tempor.
-                  </textarea>
-                </td>
-                <td><button class="btn btn-primary"> Process </button></td>
-                <td style="display: none;">1</td>
-              </tr>
             </tbody>
           </table>
         </div>

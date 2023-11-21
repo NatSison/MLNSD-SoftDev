@@ -16,15 +16,17 @@
 			$customerActiveTransactionId = $this->transactionModel->getActiveTransactionId();
 			$totalPrice = $this->transactionModel->getAllPricesPending();
 
-			$data = [
-				"pendingPaymentList" => $pendingPaymentList,
-				"pendingForShippingList" => $pendingForShippingList,
-				"completedOrderList" => $customerCompletedOrderList,
-				"user_info" => $_SESSION["user_info"],
-				"totalPrice" => $totalPrice,
-				"rowCounter" => 1,
-				"transactionId" => (!empty($customerActiveTransactionId) && isset($customerActiveTransactionId[0]->transactionId)) ? $customerActiveTransactionId[0]->transactionId : null,
-			];
+			
+				$data = [
+					"pendingPaymentList" => $pendingPaymentList,
+					"pendingForShippingList" => $pendingForShippingList,
+					"completedOrderList" => $customerCompletedOrderList,
+					"user_info" => $_SESSION["user_info"],
+					"totalPrice" => $totalPrice,
+					"rowCounter" => 1,
+					"transactionId" => (!empty($customerActiveTransactionId) && isset($customerActiveTransactionId[0]->transactionId)) ? $customerActiveTransactionId[0]->transactionId : null,
+				];
+			
 			$this->view("customers/profile", $data);
 		}
 		public function login(){

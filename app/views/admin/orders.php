@@ -470,7 +470,9 @@
                 <td><?php echo $details->productInstallationStart;?></td>
                 
                 <td>
-                  <button class="btn btn-sm buttons-blue">PROCESS ORDER</button>
+                    <form class="mx-1" action="<?php echo URLROOT."/admin/Customers/showCustomer/".$details->customerId ?>" method="post" style="display: inline">
+                        <input type="submit" value="Process Order" class="btn btn-sm buttons-blue">
+                    </form>
                 </td>
               </tr>
             <?php endforeach;?>

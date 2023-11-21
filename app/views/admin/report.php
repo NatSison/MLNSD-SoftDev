@@ -101,7 +101,9 @@
                                         <td><?php echo $details->id; ?></td>
                                         <td><?php echo $details->price; ?></td>
                                         <td><?php echo $details->stock; ?></td>
-                                        <td><input type="button" value="Edit"> </td>
+                                        <form action="<?php echo URLROOT . '/admin/products/editVar/' . $details->id?>">
+                                            <td><input type="submit" value="Edit"> </td>
+                                        </form>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>

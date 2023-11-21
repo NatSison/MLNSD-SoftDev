@@ -58,8 +58,30 @@
 				"completedOrders" => $completedTransactions,
 				"orders" => []
 			];
-			$this->view("admin/orders", $data);
+			$this->view("admin/dashboard(old)", $data);
 		}
+
+		public function show($id){
+			$pendingPaymentList = $this->transactionModel->getActivePendingPaymentOrdersByID($id);
+			$pendingForShippingList = $this->transactionModel->getActiveForShippingOrdersByID($id);
+			$customerCompletedOrderList = $this->transactionModel->getCompletedOrderProductsByID($id);
+			$customerActiveTransactionId = $this->transactionModel->getActiveTransactionIdByID($id);
+			$totalPrice = $this->transactionModel->getAllPricesPending();
+
+			
+				$data = [
+					"pendingPaymentList" => $pendingPaymentList,
+					"pendingForShippingList" => $pendingForShippingList,
+					"completedOrderList" => $customerCompletedOrderList,
+					"user_info" => $_SESSION["user_info"],
+					"totalPrice" => $totalPrice,
+					"rowCounter" => 1,
+					"transactionId" => (!empty($customerActiveTransactionId) && isset($customerActiveTransactionId[0]->transactionId)) ? $customerActiveTransactionId[0]->transactionId : null,
+				];
+			
+			$this->view("customers/profile", $data);
+		}
+		
 		
 		public function markAsPaid($id){
 			if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -77,6 +99,8 @@
 			}
 		}
 		
+
+
 		public function completeOrder($id){
 			if($_SERVER["REQUEST_METHOD"] == "POST") {
 				$data = [

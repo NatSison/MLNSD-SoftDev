@@ -82,7 +82,7 @@
                             <form class="mx-1" action="<?php echo URLROOT."/admin/dashboard/completeOrder/".$details->transactionId ?>" method="post" style="display: inline">
                                 <input type="submit" value="Mark as Complete" class="btn btn-success">
                             </form>
-                            <form class="mx-1" action="<?php echo URLROOT."/transactions/updateDelivery/".$details->transactionId ."cust".$details->customerId ?>" method="post" style="display: inline">
+                            <form class="mx-1" action="<?php echo URLROOT."/dashboard/show/".$details->transactionId ?>" method="post" style="display: inline">
                                 <input type="submit" value="See Details" class="btn btn-primary">
                             </form>
                             <form class="mx-1" action="<?php echo URLROOT."/transactions/cancelOrder/".$details->transactionId ?>" method="post" style="display: inline">

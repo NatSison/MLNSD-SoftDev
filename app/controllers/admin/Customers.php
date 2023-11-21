@@ -2,6 +2,7 @@
     class Customers extends Controller {
         public function __construct(){
             $this->customerModel = $this->model("Customer");
+			$this->transactionModel = $this->model("Transaction");
         }
 
         public function index(){
@@ -21,6 +22,27 @@
 			];
 		
 			$this->view("admin/customers/show", $data);
+		}
+
+        public function showCustomer($id){
+			$pendingPaymentList = $this->transactionModel->getActivePendingPaymentOrdersById($id);
+			$pendingForShippingList = $this->transactionModel->getActiveForShippingOrdersById($id);
+			$customerCompletedOrderList = $this->transactionModel->getCompletedOrderProductsById($id);
+			$customerActiveTransactionId = $this->transactionModel->getActiveTransactionIdById($id);
+            $customer = $this->customerModel->getCustomerById($id);
+			$totalPrice = $this->transactionModel->getAllPricesPending();
+			
+            $data = [
+                "pendingPaymentList" => $pendingPaymentList,
+                "pendingForShippingList" => $pendingForShippingList,
+                "completedOrderList" => $customerCompletedOrderList,
+                "user_info" => $customer,
+                "totalPrice" => $totalPrice,
+                "rowCounter" => 1,
+                "transactionId" => (!empty($customerActiveTransactionId) && isset($customerActiveTransactionId[0]->transactionId)) ? $customerActiveTransactionId[0]->transactionId : null,
+            ];
+        
+            $this->view("customers/profile", $data);
 		}
 
         public function add(){
